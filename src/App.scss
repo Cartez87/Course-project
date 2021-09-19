@@ -1,0 +1,28 @@
+.App {
+    padding-top: 2em;
+}
+
+.header-section {
+  position: relative;
+  min-height: 400px;
+}
+
+.top-panel {
+  margin-bottom: 5.5em;
+}
+
+.form-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: white;
+  position: relative;
+  z-index: 2;
+  font-weight: 300;
+  font-size: 40px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.7em;
+}

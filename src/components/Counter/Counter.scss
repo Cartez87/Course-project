@@ -1,0 +1,35 @@
+
+.counter-box {
+    margin-bottom: 2em;
+}
+
+.counter-box button {
+    border: none;
+    min-width: 40px;
+    font-size: 18px;
+    transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.counter-box button:focus {
+    box-shadow: none;
+}
+
+.counter-box input {
+    width: 100px;
+    border: none;
+}
+
+.counter-box input:focus {
+    box-shadow: none;
+}
+
+.counter-box .count {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: white;
+    margin: 0 10px;
+}
