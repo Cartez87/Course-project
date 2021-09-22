@@ -8,7 +8,7 @@ const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 
 const plugins = () => {
-  const basePlugins = [
+  return [
     new HtmlWebpackPlugin({ 
       title: 'netflixroulette',
       template: './index.html',
@@ -21,8 +21,6 @@ const plugins = () => {
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin()
   ]
-
-  return basePlugins;
 }
 
 module.exports = {

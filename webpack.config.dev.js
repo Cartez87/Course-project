@@ -5,7 +5,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 
 const plugins = () => {
-  const basePlugins = [
+  return [
     new HtmlWebpackPlugin({ 
       title: 'netflixroulette',
       template: './index.html',
@@ -17,8 +17,6 @@ const plugins = () => {
     }),
     new CleanWebpackPlugin()
   ]
-
-  return basePlugins;
 }
 
 module.exports = {
@@ -61,6 +59,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
+          'style-loader',
           'css-loader', 
           'cache-loader'
         ]
@@ -68,7 +67,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           'sass-loader',
           'cache-loader'

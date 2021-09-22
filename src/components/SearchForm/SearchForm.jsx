@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../Button';
 
 import './SearchForm.scss';
 
@@ -22,11 +23,13 @@ function SearchForm({ onSearch }) {
                 onChange={onChange} 
                 className="form-control" 
                 placeholder="What do you want to watch?"/>
-            <button 
-                onClick={handleSearch} 
-                type="button">
+
+            <Button
+                 onClick={handleSearch} 
+                 type="button"
+            >    
                 Search
-            </button>
+            </Button>
         </form>
     )
 }
