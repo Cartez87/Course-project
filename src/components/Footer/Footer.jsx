@@ -5,11 +5,11 @@ import './Footer.scss';
 
 const Footer = () => {
 
-    return (
-        <div className="footer d-flex justify-content-center">
-            <Logo />
-        </div>
-    );
+  return (
+    <div className="footer d-flex justify-content-center">
+      <Logo />
+    </div>
+  );
 }
 
 export default Footer;

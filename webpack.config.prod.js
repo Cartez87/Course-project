@@ -60,7 +60,7 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-        loader: 'file-loader',
+        type: 'asset/resource',
         include: [/fonts/]
       },
       {
@@ -82,12 +82,7 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: { name: 'images/[name].[ext]' }
-          }
-        ],
+        type: 'asset/resource'
       }
     ]
   }

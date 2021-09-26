@@ -1,6 +1,6 @@
 import React from "react";
+import bgImage from 'public/images/header-image.jpg';
 
-import bgImage from '../../public/images/header-image.jpg';
 import './HeaderImage.scss';
 
 const HeaderImage = () => {

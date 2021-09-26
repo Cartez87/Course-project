@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import './ResultsFilter.scss';
 
-
 const ResultsFilter = () => {
   
   const [ appState, setState] = useState({

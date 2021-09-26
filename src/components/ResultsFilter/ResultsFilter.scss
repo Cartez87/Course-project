@@ -1,6 +1,5 @@
 
 .category-nav {
-
     ul {
         padding: 0;
         margin: 0;
@@ -16,6 +15,7 @@
         margin-right: 30px;
         padding-bottom: 20px;
         position: relative;
+        cursor: pointer;
 
         &:before {
             transition: opacity 0.15s ease-in-out;
