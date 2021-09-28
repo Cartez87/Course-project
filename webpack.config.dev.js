@@ -5,7 +5,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 
 const plugins = () => {
-  const basePlugins = [
+  return [
     new HtmlWebpackPlugin({ 
       title: 'netflixroulette',
       template: './index.html',
@@ -17,8 +17,6 @@ const plugins = () => {
     }),
     new CleanWebpackPlugin()
   ]
-
-  return basePlugins;
 }
 
 module.exports = {
@@ -55,12 +53,13 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-        loader: 'file-loader',
+        type: 'asset/resource',
         include: [/fonts/],
       },
       {
         test: /\.css$/,
         use: [
+          'style-loader',
           'css-loader', 
           'cache-loader'
         ]
@@ -68,7 +67,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           'sass-loader',
           'cache-loader'
@@ -76,12 +75,7 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: { name: 'images/[name].[ext]' }
-          }
-        ],
+        type: 'asset/resource'
       }
     ]
   }

@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
+import Button from '../Button';
 
 import './SearchForm.scss';
 
-function SearchForm({ onSearch }) {
+const SearchForm = ({ onSearch }) => {
 
-    const [ query, setQuery ] = useState({ text: "" });
+  const [ query, setQuery ] = useState('');
 
-    function onChange(e) {
-        const newQuery = { text: e.target.value };
-        setQuery(newQuery);
-    }
+  const onChange = (e) => {
+    setQuery(e.target.value);
+  }
 
-    function handleSearch() {
-        onSearch({ text: query.text });
-    }
+  const handleSearch = () => {
+    onSearch(query);
+  }
 
-    return (
-        <form className="search-form d-flex">
-            <input 
-                type="text" 
-                onChange={onChange} 
-                className="form-control" 
-                placeholder="What do you want to watch?"/>
-            <button 
-                onClick={handleSearch} 
-                type="button">
-                Search
-            </button>
-        </form>
-    )
+  return (
+    <form className="search-form d-flex">
+      <input 
+        type="text" 
+        onChange={onChange} 
+        className="form-control" 
+        placeholder="What do you want to watch?"
+      />
+      <Button
+        onClick={handleSearch} 
+        type="button"
+      >    
+        Search
+      </Button>
+    </form>
+  )
 }
 
 export default SearchForm;
