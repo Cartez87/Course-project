@@ -23,18 +23,12 @@ const MovieCard = ({ id, cover, name, year, category }) => {
   );
 }
 
-MovieCard.defaultProps = {
-  id: 100,
-  name: 'Movie Film',
-  year: 2021,
-  category: 'Movie Category'
-}
-
 MovieCard.propTypes = {
   id: propTypes.number,
   name: propTypes.string,
   year: propTypes.number,
-  category: propTypes.string
+  category: propTypes.string,
+  cover: propTypes.string
 }
 
 export default MovieCard;

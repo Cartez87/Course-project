@@ -3,17 +3,16 @@ import Button from '../Button';
 
 import './SearchForm.scss';
 
-function SearchForm({ onSearch }) {
+const SearchForm = ({ onSearch }) => {
 
-  const [ query, setQuery ] = useState({ text: "" });
+  const [ query, setQuery ] = useState('');
 
-  function onChange(e) {
-    const newQuery = { text: e.target.value };
-    setQuery(newQuery);
+  const onChange = (e) => {
+    setQuery(e.target.value);
   }
 
-  function handleSearch() {
-    onSearch({ text: query.text });
+  const handleSearch = () => {
+    onSearch(query);
   }
 
   return (

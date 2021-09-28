@@ -1,12 +1,9 @@
 import React from "react";
+import ErrorText from '../../helper/utils/errortext';
 
 import './ErrorBoundary.scss';
 
 const ErrorBoundary = (props) => {
-
-  const ErrorText = () => {
-    return <h2>Something wrong with App!</h2>
-  }
   
   let isOk = true;
 

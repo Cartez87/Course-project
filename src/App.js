@@ -17,70 +17,69 @@ import filmsData from './filmsData';
 
 import './App.scss';
 
-function App() {
+const App = () => {
 
-    function handleSearch(search) {
-        console.log(search);
-    }
-  
-    return (
-      <ErrorBoundary>
-        <div className="App">
-          <div className="header-section">
-            <HeaderImage />
-            <Container>
-              <div className="top-panel d-flex justify-content-between align-items-center">
-                <Logo />
-                <Button 
-                  color="SECONDARY"
-                  children='+ Add movie'
-                ></Button>
-              </div>
-              <Row className="form-wrap">
-                <h1>FIND YOUR MOViE</h1>
-                <SearchForm
-                  onSearch={handleSearch}
-                />
-              </Row>
-            </Container>
-          </div>
-
-          <div className="main-section">
-            <Container>
-              <Row className="filters-panel justify-content-between align-items-start">
-                <Col>
-                  <ResultsFilter />
-                </Col>
-                <Col className="d-flex align-items-center justify-content-end">
-                  <span className="by">Sort by</span>
-                  <ReleaseDateToggle />
-                </Col>
-              </Row>
-              <Row>
-                <h3><b>39</b> movies found</h3>
-              </Row>
-              <div className="movies-wrap">
-                <Row>
-                  {filmsData.map(card => 
-                    <Col key={card.id} md={4}>
-                      <MovieCard 
-                        card={card}
-                        key={card.id}
-                        cover={card.cover}
-                        name={card.name}
-                        year={card.year}
-                        category={card.category}
-                      />
-                    </Col>
-                  )}
-                </Row>
-              </div>
-            </Container>
-          </div>
-          <Footer />
-        </div>
-      </ErrorBoundary>
-    );
+  const handleSearch = (search) => {
+    console.log(search);
   }
+ 
+  return (
+    <ErrorBoundary>
+      <div className="App">
+        <div className="header-section">
+          <HeaderImage />
+          <Container>
+            <div className="top-panel d-flex justify-content-between align-items-center">
+              <Logo />
+              <Button 
+                color="SECONDARY"
+              >+ Add movie</Button>
+            </div>
+            <div className="form-wrap">
+              <h1>FIND YOUR MOViE</h1>
+              <SearchForm
+                onSearch={handleSearch}
+              />
+            </div>
+          </Container>
+        </div>
+
+        <div className="main-section">
+          <Container>
+            <Row className="filters-panel justify-content-between align-items-start">
+              <Col>
+                <ResultsFilter />
+              </Col>
+              <Col className="d-flex align-items-center justify-content-end">
+                <span className="by">Sort by</span>
+                <ReleaseDateToggle />
+              </Col>
+            </Row>
+            <Row>
+              <h3><b>39</b> movies found</h3>
+            </Row>
+            <div className="movies-wrap">
+              <Row>
+                {filmsData.map(card => 
+                  <Col key={card.id} md={4}>
+                    <MovieCard 
+                      card={card}
+                      key={card.id}
+                      cover={card.cover}
+                      name={card.name}
+                      year={card.year}
+                      category={card.category}
+                    />
+                  </Col>
+                )}
+              </Row>
+            </div>
+          </Container>
+        </div>
+        <Footer />
+      </div>
+    </ErrorBoundary>
+  );
+}
   
 export default App;
