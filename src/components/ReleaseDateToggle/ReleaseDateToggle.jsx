@@ -3,18 +3,18 @@ import Select from 'react-select';
 
 import './ReleaseDateToggle.scss';
 
-const ReleaseDateToggle = () => {
+const ReleaseDateToggle = ({ sortReleaseDate }) => {
 
   const options = [
-    { value: 'year', label: 'Year' },
-    { value: 'category', label: 'Category' },
-    { value: 'date', label: 'Date' },
+    { value: 'up to', label: 'Up to' },
+    { value: 'down to', label: 'Down to' },
   ]
   
   return (
     <Select
       options={options}
       placeholder= 'release date'
+      onChange={sortReleaseDate}
     />
   );
 }

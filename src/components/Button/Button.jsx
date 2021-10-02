@@ -23,11 +23,6 @@ const Button = ({ children, color, ...attrs }) => {
   )
 }
 
-Button.defaultProps = {
-  children: 'Click Me',
-  color: 'PRIMARY'
-}
-
 Button.propTypes = {
   children: propTypes.string,
   color: propTypes.string

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { Toast } from 'react-bootstrap';
+import MyModal from '../Modal';
+import Form from "../Form";
 
 import './Toast.scss';
 
 const MovieToast = () => {
 
+  const [modalShow, setModalShow] = useState(false);
   const [show, setShow] = useState(true);
   const toggleShow = () => setShow(!show);
 
@@ -18,8 +21,30 @@ const MovieToast = () => {
         <Toast.Header />
         <Toast.Body>
           <ul className="edit-list list-unstyled mb-0 p-0">
-            <li><span>Edit</span></li>
-            <li><span>Delete</span></li>
+            <li>
+              <span onClick={() => setModalShow(true)}>Edit</span>
+              <MyModal
+                show={modalShow}
+                title="Edit MOVIE"
+                onHide={() => setModalShow(false)}
+              >
+                <Form />
+              </MyModal>
+            </li>
+            <li>
+              <span>Delete</span>
+              {/* <MyModal
+                show={modalShow}
+                title="Delete MOVIE"
+                description="Are you sure you want to delete this movie?"
+                onHide={() => setModalShow(false)}
+                >
+                <Button 
+                  color="PRIMARY"
+                  onClick={() => setModalShow(true)}
+                >Confirm</Button>
+              </MyModal> */}
+            </li>
           </ul>
         </Toast.Body>
       </Toast>

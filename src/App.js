@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import Button from './components/Button';
@@ -13,8 +13,10 @@ import MovieCard from './components/MovieCard';
 import ResultsFilter from './components/ResultsFilter';
 import SearchForm from './components/SearchForm';
 import ReleaseDateToggle from './components/ReleaseDateToggle';
-import filmsData from './filmsData';
+import MyModal from './components/Modal';
+import Form from './components/Form';
 
+import filmsData from './filmsData';
 import './App.scss';
 
 const App = () => {
@@ -22,7 +24,40 @@ const App = () => {
   const handleSearch = (search) => {
     console.log(search);
   }
- 
+
+  const [modalShow, setModalShow] = useState(false);
+
+  const [data, setNewData] = useState(filmsData);
+  // const [filteredData, setFilteredData] = useState(filmsData);
+
+  
+  const sortReleaseDate = (e) => {
+
+    const sortData = data.map(item => item).sort((a, b) => {
+      if(e.value === 'down to') {
+        return a.year - b.year;
+      }
+      if(e.value === 'up to') {
+        return b.year - a.year;
+      }
+      return 0;
+    });
+
+    setNewData(sortData);
+  }
+
+  const filterHandle = (e) => {
+    let category = e.target.innerHTML;
+
+    if(category === 'All') {
+      return data;
+    }
+
+    const filtered = data.filter(film => category === film.category);
+    setNewData(filtered);
+  }
+
+
   return (
     <ErrorBoundary>
       <div className="App">
@@ -33,7 +68,15 @@ const App = () => {
               <Logo />
               <Button 
                 color="SECONDARY"
+                onClick={() => setModalShow(true)}
               >+ Add movie</Button>
+              <MyModal
+                show={modalShow}
+                title="ADD MOVIE"
+                onHide={() => setModalShow(false)}
+                >
+              <Form />
+            </MyModal>
             </div>
             <div className="form-wrap">
               <h1>FIND YOUR MOViE</h1>
@@ -48,11 +91,15 @@ const App = () => {
           <Container>
             <Row className="filters-panel justify-content-between align-items-start">
               <Col>
-                <ResultsFilter />
+                <ResultsFilter 
+                  filterHandle={filterHandle}
+                />
               </Col>
               <Col className="d-flex align-items-center justify-content-end">
-                <span className="by">Sort by</span>
-                <ReleaseDateToggle />
+                <span className="sort-by">Sort by</span>
+                <ReleaseDateToggle 
+                  sortReleaseDate={sortReleaseDate}
+                />
               </Col>
             </Row>
             <Row>
@@ -60,15 +107,10 @@ const App = () => {
             </Row>
             <div className="movies-wrap">
               <Row>
-                {filmsData.map(card => 
+                {data.map(card => 
                   <Col key={card.id} md={4}>
                     <MovieCard 
                       card={card}
-                      key={card.id}
-                      cover={card.cover}
-                      name={card.name}
-                      year={card.year}
-                      category={card.category}
                     />
                   </Col>
                 )}

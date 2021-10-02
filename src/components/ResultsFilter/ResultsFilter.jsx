@@ -2,29 +2,30 @@ import React, { useState } from "react";
 
 import './ResultsFilter.scss';
 
-const ResultsFilter = () => {
+const ResultsFilter = ({ filterHandle }) => {
   
-  const [ appState, setState] = useState({
-    activeState: 'all'
+  const [appState, setState] = useState({
+    activeState: 'All'
   });
 
   const menuItems = [
-    'all',
+    'All',
     'Documentary',
     'Comedy',
     'Horror',
-    'crime'
+    'Crime'
   ]
-
+  
   const toggleActive = (index) => { 
     setState({activeState: menuItems[index]});
   }
 
   const toggleActiveClass = (index) => {
+    const classname = "menu-item";
     if(menuItems[index] === appState.activeState) {
-      return "menu-item active";
+      return classname + " active";
     } else {
-      return "menu-item";
+      return classname;
     }
   }
   
@@ -34,7 +35,7 @@ const ResultsFilter = () => {
       <ul>
         {menuItems.map((menuItem, index) => 
           <li key={index} onClick={() => toggleActive(index)} className={toggleActiveClass(index)}>
-            {menuItem}
+            <span onClick={filterHandle}>{menuItem}</span>
           </li>
         )}
       </ul>

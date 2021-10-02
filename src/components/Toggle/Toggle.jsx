@@ -31,17 +31,14 @@ export default class Toggle extends Component {
         const { selectOptions, selectedOptions } = this.state;
 
         return(
-            <form className="genre-select">
-                <label>Genre</label>
-                <Multiselect
-                    options={selectOptions}
-                    displayValue="option"
-                    showCheckbox={true}
-                    selectedValues={selectedOptions}
-                    placeholder="Select Genre"
-                    showArrow
-                />
-            </form>
+            <Multiselect
+                options={selectOptions}
+                displayValue="option"
+                showCheckbox={true}
+                selectedValues={selectedOptions}
+                placeholder="Select Genre"
+                showArrow
+            />
         )   
     }
 }

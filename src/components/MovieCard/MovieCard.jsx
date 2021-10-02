@@ -4,7 +4,9 @@ import MovieToast from '../Toast';
 
 import './MovieCard.scss';
 
-const MovieCard = ({ id, cover, name, year, category }) => {
+const MovieCard = ({ card }) => {
+
+  const { id, cover, name, year, category } = card;
 
     return(
       <div id={id} className="movie-card">
@@ -24,11 +26,13 @@ const MovieCard = ({ id, cover, name, year, category }) => {
 }
 
 MovieCard.propTypes = {
-  id: propTypes.number,
-  name: propTypes.string,
-  year: propTypes.number,
-  category: propTypes.string,
-  cover: propTypes.string
+  card: propTypes.shape({
+    id: propTypes.number,
+    name: propTypes.string,
+    year: propTypes.number,
+    category: propTypes.string,
+    cover: propTypes.string
+  })
 }
 
 export default MovieCard;
