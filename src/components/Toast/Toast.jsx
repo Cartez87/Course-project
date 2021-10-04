@@ -33,17 +33,6 @@ const MovieToast = () => {
             </li>
             <li>
               <span>Delete</span>
-              {/* <MyModal
-                show={modalShow}
-                title="Delete MOVIE"
-                description="Are you sure you want to delete this movie?"
-                onHide={() => setModalShow(false)}
-                >
-                <Button 
-                  color="PRIMARY"
-                  onClick={() => setModalShow(true)}
-                >Confirm</Button>
-              </MyModal> */}
             </li>
           </ul>
         </Toast.Body>
