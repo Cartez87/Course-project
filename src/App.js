@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -15,49 +15,46 @@ import SearchForm from './components/SearchForm';
 import ReleaseDateToggle from './components/ReleaseDateToggle';
 import MyModal from './components/Modal';
 import Form from './components/Form';
+import HandleSearch from './helper/utils/handleSearch';
 
 import filmsData from './filmsData';
 import './App.scss';
+import { SORT_CONST } from './helper/constants';
 
 const App = () => {
-
-  const handleSearch = (search) => {
-    console.log(search);
-  }
-
   const [modalShow, setModalShow] = useState(false);
+  const [sortValue, setSortValue] = useState(null);
+  const [filteredData, setFilteredData] = useState(filmsData || []);
 
-  const [data, setNewData] = useState(filmsData);
-  // const [filteredData, setFilteredData] = useState(filmsData);
-
-  
-  const sortReleaseDate = (e) => {
-
-    const sortData = data.map(item => item).sort((a, b) => {
-      if(e.value === 'down to') {
+  const sortReleaseDate = (data) => {
+    return data.map(item => item).sort((a, b) => {
+      if(sortValue?.value === SORT_CONST.DOWN_TO) {
         return a.year - b.year;
       }
-      if(e.value === 'up to') {
+      if(sortValue?.value === SORT_CONST.UP_TO) {
         return b.year - a.year;
       }
       return 0;
     });
-
-    setNewData(sortData);
   }
 
-  const filterHandle = (e) => {
-    let category = e.target.innerHTML;
-
-    if(category === 'All') {
-      return data;
+  const filterData = (currentVal) => {
+    if (currentVal.toLowerCase() === 'all') {
+      setFilteredData(filmsData);
+      return;
     }
+    const filteredList = filmsData?.filter((film) => {
+      return film?.category.toLowerCase() === currentVal.toLowerCase();
+    });
 
-    const filtered = data.filter(film => category === film.category);
-    setNewData(filtered);
+    setFilteredData(filteredList);
   }
 
-
+  useEffect(() => {
+    const sortedData = sortReleaseDate(filteredData);
+    setFilteredData(sortedData);
+  }, [sortValue]);
+  
   return (
     <ErrorBoundary>
       <div className="App">
@@ -81,7 +78,7 @@ const App = () => {
             <div className="form-wrap">
               <h1>FIND YOUR MOViE</h1>
               <SearchForm
-                onSearch={handleSearch}
+                onSearch={HandleSearch}
               />
             </div>
           </Container>
@@ -92,13 +89,15 @@ const App = () => {
             <Row className="filters-panel justify-content-between align-items-start">
               <Col>
                 <ResultsFilter 
-                  filterHandle={filterHandle}
+                  onFilterChange={filterData}
+                  filmState={filteredData}
                 />
               </Col>
               <Col className="d-flex align-items-center justify-content-end">
                 <span className="sort-by">Sort by</span>
-                <ReleaseDateToggle 
-                  sortReleaseDate={sortReleaseDate}
+                <ReleaseDateToggle
+                  selectedOption={sortValue}
+                  setSortValue={setSortValue}
                 />
               </Col>
             </Row>
@@ -107,7 +106,7 @@ const App = () => {
             </Row>
             <div className="movies-wrap">
               <Row>
-                {data.map(card => 
+                {filteredData.map(card => 
                   <Col key={card.id} md={4}>
                     <MovieCard 
                       card={card}

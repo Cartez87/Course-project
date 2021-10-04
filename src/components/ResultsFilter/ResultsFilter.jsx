@@ -1,44 +1,33 @@
-import React, { useState } from "react";
-
+import React from "react";
+import { Nav } from 'react-bootstrap';
 import './ResultsFilter.scss';
 
-const ResultsFilter = ({ filterHandle }) => {
+const noop = () => {};
   
-  const [appState, setState] = useState({
-    activeState: 'All'
-  });
+const menuItems = [
+  'All',
+  'Documentary',
+  'Comedy',
+  'Horror',
+  'Crime'
+]
 
-  const menuItems = [
-    'All',
-    'Documentary',
-    'Comedy',
-    'Horror',
-    'Crime'
-  ]
-  
-  const toggleActive = (index) => { 
-    setState({activeState: menuItems[index]});
-  }
-
-  const toggleActiveClass = (index) => {
-    const classname = "menu-item";
-    if(menuItems[index] === appState.activeState) {
-      return classname + " active";
-    } else {
-      return classname;
-    }
+const ResultsFilter = ({ filmState = [], onFilterChange = noop }) => {
+ 
+  const onClick = (e) => {
+    onFilterChange(e.target.innerText);
   }
   
   return (
       
     <nav className="category-nav">
-      <ul>
+      <Nav variant="pills" defaultActiveKey="All-0">
         {menuItems.map((menuItem, index) => 
-          <li key={index} onClick={() => toggleActive(index)} className={toggleActiveClass(index)}>
-            <span onClick={filterHandle}>{menuItem}</span>
-          </li>
+          <Nav.Item key={`${menuItem}-${index}`}>
+            <Nav.Link eventKey={`${menuItem}-${index}`} onClick={onClick}>{menuItem}</Nav.Link>
+          </Nav.Item>
         )}
-      </ul>
+      </Nav>
     </nav>
   );
 }

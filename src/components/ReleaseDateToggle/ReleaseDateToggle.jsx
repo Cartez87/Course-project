@@ -1,20 +1,26 @@
 import React from "react";
 import Select from 'react-select';
+import { SORT_CONST } from "../../helper/constants";
 
 import './ReleaseDateToggle.scss';
 
-const ReleaseDateToggle = ({ sortReleaseDate }) => {
+const options = [
+  { value: SORT_CONST.UP_TO, label: 'Up to' },
+  { value: SORT_CONST.DOWN_TO, label: 'Down to' },
+]
 
-  const options = [
-    { value: 'up to', label: 'Up to' },
-    { value: 'down to', label: 'Down to' },
-  ]
+const ReleaseDateToggle = ({ selectedOption = null, setSortValue }) => {
   
+  const onSelect = (selectedOptObj) => {
+    setSortValue(selectedOptObj);
+  }
+
   return (
     <Select
       options={options}
       placeholder= 'release date'
-      onChange={sortReleaseDate}
+      onChange={onSelect}
+      value={selectedOption}
     />
   );
 }
