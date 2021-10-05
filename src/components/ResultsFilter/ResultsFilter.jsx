@@ -16,6 +16,7 @@ const ResultsFilter = ({ filmState = [], onFilterChange = noop }) => {
  
   const onClick = (e) => {
     onFilterChange(e.target.innerText);
+    e.preventDefault();
   }
   
   return (

@@ -4,18 +4,21 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import Button from './components/Button';
-import ErrorBoundary from './components/ErrorBoundary';
-import Footer from './components/Footer';
-import HeaderImage from './components/HeaderImage';
-import Logo from './components/Logo';
-import MovieCard from './components/MovieCard';
-import ResultsFilter from './components/ResultsFilter';
-import SearchForm from './components/SearchForm';
-import ReleaseDateToggle from './components/ReleaseDateToggle';
-import MyModal from './components/Modal';
-import Form from './components/Form';
-import HandleSearch from './helper/utils/handleSearch';
+import {
+  Button,
+  ErrorBoundary,
+  Footer,
+  HeaderImage,
+  Logo,
+  MovieCard,
+  ResultsFilter,
+  SearchForm,
+  ReleaseDateToggle,
+  MyModal,
+  Form 
+} from './components';
+
+import handleSearch from './helper/utils/handleSearch';
 
 import filmsData from './filmsData';
 import './App.scss';
@@ -27,7 +30,7 @@ const App = () => {
   const [filteredData, setFilteredData] = useState(filmsData || []);
 
   const sortReleaseDate = (data) => {
-    return data.map(item => item).sort((a, b) => {
+    return data.sort((a, b) => {
       if(sortValue?.value === SORT_CONST.DOWN_TO) {
         return a.year - b.year;
       }
@@ -54,7 +57,7 @@ const App = () => {
     const sortedData = sortReleaseDate(filteredData);
     setFilteredData(sortedData);
   }, [sortValue]);
-  
+
   return (
     <ErrorBoundary>
       <div className="App">
@@ -69,6 +72,7 @@ const App = () => {
               >+ Add movie</Button>
               <MyModal
                 show={modalShow}
+                size="lg"
                 title="ADD MOVIE"
                 onHide={() => setModalShow(false)}
                 >
@@ -78,7 +82,7 @@ const App = () => {
             <div className="form-wrap">
               <h1>FIND YOUR MOViE</h1>
               <SearchForm
-                onSearch={HandleSearch}
+                onSearch={handleSearch}
               />
             </div>
           </Container>
