@@ -1,16 +1,5 @@
 
-.genre-select label{
-    font-weight: 600;
-    font-size: 16px;
-    display: inline-block;
-    /* identical to box height */
-
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #F65261;
-}
-
-.genre-select .searchBox {
+.searchBox {
     color: white;
     font-size: 20px;
 }
@@ -20,7 +9,9 @@
     background: rgba(50, 50, 50, 0.948044);
     mix-blend-mode: normal;
     border-radius: 4px;
-    padding: 1em;
+    opacity: 0.8;
+    padding: 9px 18px;
+    height: 56px;
 }
 
 .multiselect-container .optionListContainer {

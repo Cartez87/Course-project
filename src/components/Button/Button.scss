@@ -9,6 +9,11 @@
   font-size: 20px;
   font-weight: 500;
 
+  &:focus {
+    box-shadow: none;
+    border-color: none;
+  }
+
   &.btn-primary {
     background: #F65261;
     color: white;

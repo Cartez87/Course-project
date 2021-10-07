@@ -47,7 +47,7 @@
     display: none !important;
 }
 
-.by {
+.sort-by {
     color: rgba(white, 0.7);
     text-transform: uppercase;
 }
@@ -56,10 +56,21 @@
     background: rgba(50, 50, 50, 1) !important;
     text-transform: uppercase;
     font-size: 14px;
+
+    .css-4ljt47-MenuList {
+        >div {
+            cursor: pointer;
+            &:active {
+                background: none !important;
+            }
+        }
+    }
 }
 
 .css-1n7v3ny-option,
-.css-9gakcf-option:active,
 .css-9gakcf-option {
-    background: #F65261 !important;
+    background: none !important;
+    &:hover {
+        background: #F65261 !important;
+    }
 }
