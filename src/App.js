@@ -1,31 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import {
-  Button,
   ErrorBoundary,
   Footer,
-  HeaderImage,
-  Logo,
   MovieCard,
   ResultsFilter,
-  SearchForm,
   ReleaseDateToggle,
-  MyModal,
-  Form 
+  MovieDetails,
+  Header
 } from './components';
-
-import handleSearch from './helper/utils/handleSearch';
 
 import filmsData from './filmsData';
 import './App.scss';
 import { SORT_CONST } from './helper/constants';
 
 const App = () => {
-  const [modalShow, setModalShow] = useState(false);
+  const [selectedCard, chooseSelectedCard] = useState(null);
   const [sortValue, setSortValue] = useState(null);
   const [filteredData, setFilteredData] = useState(filmsData || []);
 
@@ -57,39 +51,30 @@ const App = () => {
     const sortedData = sortReleaseDate(filteredData);
     setFilteredData(sortedData);
   }, [sortValue]);
+  
+  const currentDetails = useMemo(() => {
+    return filmsData.find(film => film.id === selectedCard);
+    
+  }, [selectedCard]);
+
+  const backToSearch = () => {
+    chooseSelectedCard(null);
+  }
 
   return (
     <ErrorBoundary>
       <div className="App">
-        <div className="header-section">
-          <HeaderImage />
+        { currentDetails ? 
+        <MovieDetails
+          key={currentDetails.id}
+          details={currentDetails}
+          backToSearch={backToSearch}
+        />
+         : <Header />
+        }
+        <section className="main-section">
           <Container>
-            <div className="top-panel d-flex justify-content-between align-items-center">
-              <Logo />
-              <Button 
-                color="SECONDARY"
-                onClick={() => setModalShow(true)}
-              >+ Add movie</Button>
-              <MyModal
-                show={modalShow}
-                size="lg"
-                title="ADD MOVIE"
-                onHide={() => setModalShow(false)}
-                >
-              <Form />
-            </MyModal>
-            </div>
-            <div className="form-wrap">
-              <h1>FIND YOUR MOViE</h1>
-              <SearchForm
-                onSearch={handleSearch}
-              />
-            </div>
-          </Container>
-        </div>
-
-        <div className="main-section">
-          <Container>
+            
             <Row className="filters-panel justify-content-between align-items-start">
               <Col>
                 <ResultsFilter 
@@ -106,7 +91,7 @@ const App = () => {
               </Col>
             </Row>
             <Row>
-              <h3><b>39</b> movies found</h3>
+              <h3><b>{filmsData.length}</b> movies found</h3>
             </Row>
             <div className="movies-wrap">
               <Row>
@@ -114,13 +99,14 @@ const App = () => {
                   <Col key={card.id} md={4}>
                     <MovieCard 
                       card={card}
+                      chooseSelectedCard={() => chooseSelectedCard(card.id)}
                     />
                   </Col>
                 )}
               </Row>
             </div>
           </Container>
-        </div>
+        </section>
         <Footer />
       </div>
     </ErrorBoundary>

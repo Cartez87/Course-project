@@ -5,11 +5,10 @@ import './HeaderImage.scss';
 
 const HeaderImage = () => {
 
-    return (
-        <div className="header-image" style={{ backgroundImage: `url(${bgImage})` }}>
-            
-        </div>
-    )
+  return (
+    <div className="header-image" style={{ backgroundImage: `url(${bgImage})` }}>
+    </div>
+  )
 }
 
 export default HeaderImage;

@@ -2,8 +2,6 @@ import React from "react";
 import { Nav } from 'react-bootstrap';
 import './ResultsFilter.scss';
 
-const noop = () => {};
-  
 const menuItems = [
   'All',
   'Documentary',
@@ -12,7 +10,7 @@ const menuItems = [
   'Crime'
 ]
 
-const ResultsFilter = ({ filmState = [], onFilterChange = noop }) => {
+const ResultsFilter = ({ onFilterChange }) => {
  
   const onClick = (e) => {
     onFilterChange(e.target.innerText);

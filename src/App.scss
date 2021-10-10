@@ -2,13 +2,6 @@
     padding-top: 2em;
 }
 
-.header-section {
-  position: relative;
-  min-height: 400px;
-  border-bottom: 10px solid rgba(#888888, 0.5);
-
-}
-
 .row>* {
   padding: 0;
 }
@@ -51,4 +44,8 @@ h3 {
 
 .movies-wrap {
   margin: 0 -25px;
+}
+
+.main-section {
+  border-top: 10px solid rgba(#888888, 0.5);
 }
