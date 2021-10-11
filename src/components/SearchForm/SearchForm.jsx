@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import propTypes from 'prop-types';
 import Button from '../Button';
 
 import './SearchForm.scss';
@@ -31,6 +32,10 @@ const SearchForm = ({ onSearch }) => {
       </Button>
     </form>
   )
+}
+
+SearchForm.propTypes = {
+  onSearch: propTypes.func
 }
 
 export default SearchForm;

@@ -21,6 +21,7 @@ const MovieToast = () => {
   });
 
   const [show, setShow] = useState(true);
+  
   const toggleShow = (e) => {
     e.stopPropagation();
     setShow(!show);
@@ -45,7 +46,7 @@ const MovieToast = () => {
       <button className="toggle-toast-btn" onClick={toggleShow}>
         <ThreeDotsVertical />
       </button>
-      <Toast onClose={toggleShow} onBlur={toggleShow} show={!show}>
+      <Toast onClose={toggleShow} onClick={e => e.stopPropagation()} onBlur={toggleShow} show={!show}>
         <Toast.Header />
         <Toast.Body>
           <ul className="edit-list list-unstyled mb-0 p-0">

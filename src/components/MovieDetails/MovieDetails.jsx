@@ -28,7 +28,7 @@ const MovieDetails = ({ details, backToSearch }) => {
         <Container>
           <div className="heading-panel d-flex justify-content-between align-items-center">
             <Logo />
-            <span onClick={backToSearch} className="back-to-search"><Search /></span>
+            <button onClick={backToSearch} className="back-to-search"><Search /></button>
           </div>
           <Row>
             <Col sm={4}>

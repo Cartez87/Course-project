@@ -9,7 +9,7 @@ const options = [
   { value: SORT_CONST.DOWN_TO, label: 'Down to' },
 ]
 
-const ReleaseDateToggle = ({ selectedOption = null, setSortValue }) => {
+const ReleaseDateToggle = ({ sortReleaseDate, selectedOption = null, setSortValue }) => {
   
   const onSelect = (selectedOptObj) => {
     setSortValue(selectedOptObj);

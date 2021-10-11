@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from 'prop-types';
 import { Nav } from 'react-bootstrap';
 import './ResultsFilter.scss';
 
@@ -29,6 +30,10 @@ const ResultsFilter = ({ onFilterChange }) => {
       </Nav>
     </nav>
   );
+}
+
+ResultsFilter.propTypes = {
+  onFilterChange: propTypes.func
 }
 
 export default ResultsFilter;

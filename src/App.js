@@ -24,7 +24,7 @@ const App = () => {
   const [filteredData, setFilteredData] = useState(filmsData || []);
 
   const sortReleaseDate = (data) => {
-    return data.sort((a, b) => {
+    return data.map(item => item).sort((a, b) => {
       if(sortValue?.value === SORT_CONST.DOWN_TO) {
         return a.year - b.year;
       }
@@ -85,6 +85,7 @@ const App = () => {
               <Col className="d-flex align-items-center justify-content-end">
                 <span className="sort-by">Sort by</span>
                 <ReleaseDateToggle
+                  sortReleaseDate={setSortValue}
                   selectedOption={sortValue}
                   setSortValue={setSortValue}
                 />
