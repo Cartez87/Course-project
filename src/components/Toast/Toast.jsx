@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { Toast } from 'react-bootstrap';
 import MyModal from '../Modal';
@@ -27,19 +27,19 @@ const MovieToast = () => {
     setShow(!show);
   } 
 
-  const handleEdit = () => {
+  const handleEdit = useCallback(() => {
     setModalEdit({
       showModal: true,
       modalType: MODAL_TYPES.EDIT
     });
-  }
+  }, []);
 
-  const handleDelete = () => {
+  const handleDelete = useCallback(() => {
     setModalDelete({
       showModal: true,
       modalType: MODAL_TYPES.DELETE
     });
-  }
+  }, []);
 
   return (
     <div className="toast-wrap">
