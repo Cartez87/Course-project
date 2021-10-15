@@ -11,7 +11,9 @@ import {
   ResultsFilter,
   ReleaseDateToggle,
   MovieDetails,
-  Header
+  Header,
+  FetchedMovies,
+  Movies
 } from './components';
 
 import filmsData from './filmsData';
@@ -109,6 +111,8 @@ const App = () => {
           </Container>
         </section>
         <Footer />
+        {/* <Movies movies={[1, 2, 3]}/> */}
+        <FetchedMovies />
       </div>
     </ErrorBoundary>
   );
