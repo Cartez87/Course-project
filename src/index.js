@@ -7,15 +7,17 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import './index.scss';
 import App from './App';
-import rootreducer from './store/rootReducer';
+import rootReducer from './store/rootReducer';
 
 
 const store = createStore(
-  rootreducer, 
+  rootReducer, 
   composeWithDevTools(
     applyMiddleware(thunk) 
   )
 );
+
+console.log(store.getState());
 
 const movieApp = (
   <Provider store={store}>

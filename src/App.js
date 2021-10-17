@@ -4,16 +4,16 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import { useSelector, useDispatch } from "react-redux";
+
 import {
   ErrorBoundary,
   Footer,
-  MovieCard,
   ResultsFilter,
   ReleaseDateToggle,
   MovieDetails,
   Header,
-  FetchedMovies,
-  Movies
+  FetchedMovies
 } from './components';
 
 import filmsData from './filmsData';
@@ -21,47 +21,52 @@ import './App.scss';
 import { SORT_CONST } from './helper/constants';
 
 const App = () => {
-  const [selectedCard, chooseSelectedCard] = useState(null);
+  const [selectedMovie, chooseSelectedMovie] = useState(null);
   const [sortValue, setSortValue] = useState(null);
   const [filteredData, setFilteredData] = useState(filmsData || []);
 
   const sortReleaseDate = (data) => {
-    return data.map(item => item).sort((a, b) => {
-      if(sortValue?.value === SORT_CONST.DOWN_TO) {
-        return a.year - b.year;
-      }
-      if(sortValue?.value === SORT_CONST.UP_TO) {
-        return b.year - a.year;
-      }
-      return 0;
-    });
+    // return data.map(item => item).sort((a, b) => {
+    //   if(sortValue?.value === SORT_CONST.DOWN_TO) {
+    //     return a.year - b.year;
+    //   }
+    //   if(sortValue?.value === SORT_CONST.UP_TO) {
+    //     return b.year - a.year;
+    //   }
+    //   return 0;
+    // });
   }
 
   const filterData = (currentVal) => {
-    if (currentVal.toLowerCase() === 'all') {
-      setFilteredData(filmsData);
-      return;
-    }
-    const filteredList = filmsData?.filter((film) => {
-      return film?.category.toLowerCase() === currentVal.toLowerCase();
-    });
+    // if (currentVal.toLowerCase() === 'all') {
+    //   setFilteredData(filmsData);
+    //   return;
+    // }
+    // const filteredList = filmsData?.filter((film) => {
+    //   return film?.category.toLowerCase() === currentVal.toLowerCase();
+    // });
 
-    setFilteredData(filteredList);
+    // setFilteredData(filteredList);
   }
 
-  useEffect(() => {
-    const sortedData = sortReleaseDate(filteredData);
-    setFilteredData(sortedData);
-  }, [sortValue]);
+  // useEffect(() => {
+  //   const sortedData = sortReleaseDate(filteredData);
+  //   setFilteredData(sortedData);
+  // }, [sortValue]);
+
+  const movies = useSelector((state) => {
+    return state.movies.fetchedMovies.data;
+  });
   
   const currentDetails = useMemo(() => {
-    return filmsData.find(film => film.id === selectedCard);
+    return movies.find(film => film.id === selectedMovie);
     
-  }, [selectedCard]);
-
+  }, [selectedMovie]);
+  
+  // const dispatch = useDispatch();
   const backToSearch = () => {
-    chooseSelectedCard(null);
-  }
+    chooseSelectedMovie(null);
+  };
 
   return (
     <ErrorBoundary>
@@ -97,7 +102,8 @@ const App = () => {
               <h3><b>{filmsData.length}</b> movies found</h3>
             </Row>
             <div className="movies-wrap">
-              <Row>
+              <FetchedMovies chooseSelectedMovie={chooseSelectedMovie}/>
+              {/* <Row>
                 {filteredData.map(card => 
                   <Col key={card.id} md={4}>
                     <MovieCard 
@@ -106,13 +112,11 @@ const App = () => {
                     />
                   </Col>
                 )}
-              </Row>
+              </Row> */}
             </div>
           </Container>
         </section>
         <Footer />
-        {/* <Movies movies={[1, 2, 3]}/> */}
-        <FetchedMovies />
       </div>
     </ErrorBoundary>
   );
