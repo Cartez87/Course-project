@@ -14,13 +14,13 @@ const MovieDetails = ({ details, backToSearch }) => {
 
     const { 
         id, 
-        cover, 
-        name, 
-        year, 
-        category, 
-        rating, 
-        duration, 
-        description 
+        poster_path, 
+        title, 
+        release_date, 
+        genres, 
+        vote_average, 
+        runtime, 
+        overview 
     } = details;
 
     return (
@@ -32,16 +32,16 @@ const MovieDetails = ({ details, backToSearch }) => {
           </div>
           <Row>
             <Col sm={4}>
-                <div className="movie-image"><img src={cover} alt={cover} /></div>
+                <div className="movie-image"><img src={poster_path} alt={title} /></div>
             </Col>
             <Col sm={8}>
-            <h3 className="movie-name d-flex align-items-center">{name} <span className="movie-rating">{rating}</span></h3> 
-              <span className="movie-category">{category}</span>
+            <h3 className="movie-name d-flex align-items-center">{title} <span className="movie-rating">{vote_average}</span></h3> 
+              <span className="movie-category">{genres.map((genre) => (<span key={`${id}-${genre}`}>{genre}, </span>))}</span>
               <div className="movie-info d-flex mb-4">
-                  <span className="movie-year">{year}</span>
-                  <span className="movie-duration">{duration}</span>
+                  <span className="movie-year">{release_date}</span>
+                  <span className="movie-duration">{runtime}</span>
               </div>
-              <p className="movie-description">{description}</p>  
+              <p className="movie-description">{overview}</p>
           </Col>
         </Row>
       </Container>
@@ -63,4 +63,3 @@ MovieDetails.propTypes = {
 }
 
 export default MovieDetails;
-

@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import {
   ErrorBoundary,
@@ -22,8 +22,9 @@ import { SORT_CONST } from './helper/constants';
 
 const App = () => {
   const [selectedMovie, chooseSelectedMovie] = useState(null);
+  const [currentMovie, setCurrentMovie] = useState(null);
   const [sortValue, setSortValue] = useState(null);
-  const [filteredData, setFilteredData] = useState(filmsData || []);
+  // const [filteredData, setFilteredData] = useState(filmsData);
 
   const sortReleaseDate = (data) => {
     // return data.map(item => item).sort((a, b) => {
@@ -49,32 +50,21 @@ const App = () => {
     // setFilteredData(filteredList);
   }
 
-  // useEffect(() => {
-  //   const sortedData = sortReleaseDate(filteredData);
-  //   setFilteredData(sortedData);
-  // }, [sortValue]);
-
   const movies = useSelector((state) => {
     return state.movies.fetchedMovies.data;
   });
-  
-  const currentDetails = useMemo(() => {
-    return movies.find(film => film.id === selectedMovie);
     
-  }, [selectedMovie]);
-  
-  // const dispatch = useDispatch();
   const backToSearch = () => {
-    chooseSelectedMovie(null);
+    setCurrentMovie(null);
   };
 
   return (
     <ErrorBoundary>
       <div className="App">
-        { currentDetails ? 
+        { currentMovie ? 
         <MovieDetails
-          key={currentDetails.id}
-          details={currentDetails}
+          key={currentMovie.id}
+          details={currentMovie}
           backToSearch={backToSearch}
         />
          : <Header />
@@ -86,7 +76,7 @@ const App = () => {
               <Col>
                 <ResultsFilter 
                   onFilterChange={filterData}
-                  filmState={filteredData}
+                  // filmState={filteredData}
                 />
               </Col>
               <Col className="d-flex align-items-center justify-content-end">
@@ -102,17 +92,7 @@ const App = () => {
               <h3><b>{filmsData.length}</b> movies found</h3>
             </Row>
             <div className="movies-wrap">
-              <FetchedMovies chooseSelectedMovie={chooseSelectedMovie}/>
-              {/* <Row>
-                {filteredData.map(card => 
-                  <Col key={card.id} md={4}>
-                    <MovieCard 
-                      card={card}
-                      chooseSelectedCard={() => chooseSelectedCard(card.id)}
-                    />
-                  </Col>
-                )}
-              </Row> */}
+              <FetchedMovies  chooseSelectedMovie={chooseSelectedMovie} onMovieClick={setCurrentMovie}/>
             </div>
           </Container>
         </section>
