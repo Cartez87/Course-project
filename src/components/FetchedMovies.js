@@ -5,18 +5,23 @@ import MovieCard from "../components/MovieCard";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import { fetchMovies } from "../store/actions";
+import { fetchMovies } from "../store/movieActions";
 
 const FetchedMovies = ({ onMovieClick })=> {
 	const dispatch = useDispatch();
-	const movies = useSelector((state) => {
-		return state.movies.fetchedMovies.data;
+	const { movies, filter, sort } = useSelector((state) => {
+		const { fetchedMovies, filter, sort } = state.movies;
+		return {
+			movies: fetchedMovies.data,
+			filter,
+			sort,
+		};
 	});
 
 	useEffect(() => {
-		dispatch(fetchMovies())
-	}, []);
-
+		dispatch(fetchMovies(filter, sort?.order))
+	}, [filter, sort]);
+  
 	if(!movies?.length) {
 		return <span>Don't have films yet!</span>
 	}

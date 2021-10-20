@@ -1,7 +1,8 @@
 import React from "react";
-import propTypes from 'prop-types';
 import { Nav } from 'react-bootstrap';
+import { useSelector, useDispatch } from "react-redux";
 import './ResultsFilter.scss';
+import { filterMovies } from "../../store/movieActions";
 
 const menuItems = [
   'All',
@@ -11,11 +12,16 @@ const menuItems = [
   'Crime'
 ]
 
-const ResultsFilter = ({ onFilterChange }) => {
- 
+const ResultsFilter = () => {
+  
+  const dispatch = useDispatch();
+  const filterState = useSelector((state) => {
+    return state.movies.filter;
+  });
+
   const onClick = (e) => {
-    onFilterChange(e.target.innerText);
     e.preventDefault();
+    dispatch(filterMovies(e.target.innerText.toLowerCase()));
   }
   
   return (
@@ -30,10 +36,6 @@ const ResultsFilter = ({ onFilterChange }) => {
       </Nav>
     </nav>
   );
-}
-
-ResultsFilter.propTypes = {
-  onFilterChange: propTypes.func
 }
 
 export default ResultsFilter;
