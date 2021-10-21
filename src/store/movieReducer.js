@@ -11,14 +11,14 @@ const initialState = {
   filter: ''
 }
 
-export const movieReducer = (state = initialState, action) => {
-  switch (action.type) {
+export const movieReducer = (state = initialState, {type, payload}) => {
+  switch (type) {
     case FETCH_MOVIES:
-      return { ...state, fetchedMovies: action.payload}
+      return { ...state, fetchedMovies: payload}
     case FILTER_MOVIES:
-      return { ...state, filter: action.payload}
+      return { ...state, filter: payload}
     case SORT_MOVIES:
-      return {...state, sort: action.payload }
+      return {...state, sort: payload }
 
     default: return state
   } 

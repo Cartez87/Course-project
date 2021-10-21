@@ -9,13 +9,15 @@ export const fetchMovies = (filter='', sortOrder='') => {
 }
 
 export const filterMovies = (filter) => {
-  return async dispatch => {
-    dispatch({type: FILTER_MOVIES, payload: filter});
+  return {
+    type: FILTER_MOVIES, 
+    payload: filter
   }
 }
 
 export const sortMovies = (sortOrder) => {
-  return async dispatch => {
-    dispatch({type: SORT_MOVIES, payload: sortOrder});
+  return {
+    type: SORT_MOVIES, 
+    payload: sortOrder
   }
 }

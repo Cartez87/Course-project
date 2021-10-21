@@ -25,16 +25,14 @@ const ResultsFilter = () => {
   }
   
   return (
-      
-    <nav className="category-nav">
-      <Nav variant="pills" defaultActiveKey="All-0">
+
+      <Nav className="category-nav" variant="pills" defaultActiveKey="All-0">
         {menuItems.map((menuItem, index) => 
           <Nav.Item key={`${menuItem}-${index}`}>
             <Nav.Link eventKey={`${menuItem}-${index}`} onClick={onClick}>{menuItem}</Nav.Link>
           </Nav.Item>
         )}
       </Nav>
-    </nav>
   );
 }
 

@@ -19,7 +19,7 @@ const FetchedMovies = ({ onMovieClick })=> {
 	});
 
 	useEffect(() => {
-		dispatch(fetchMovies(filter, sort?.order))
+		dispatch(sort && fetchMovies(filter, sort.order))
 	}, [filter, sort]);
   
 	if(!movies?.length) {
