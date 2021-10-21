@@ -1,12 +1,14 @@
 import React from "react";
+import propTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 import { MODAL_TYPES } from '../../helper/constants';
 
 import './Modal.scss';
 
-const MyModal = ({children, modalType, ...props}) => {
+const MyModal = ({...props}) => {
 
-  let title;
+  const { children, modalType, size, title, onHide, show, description } = props;
+
   if (modalType === MODAL_TYPES.ADD) {
     title = "ADD MOVIE";
   } else if (modalType === MODAL_TYPES.EDIT) {
@@ -29,6 +31,17 @@ const MyModal = ({children, modalType, ...props}) => {
       </Modal.Body>
     </Modal>
   );
+}
+
+MyModal.propTypes = {
+  props: propTypes.shape({
+    size: propTypes.string,
+    modalType: propTypes.string,
+    title: propTypes.string,
+    onHide: propTypes.func,
+    show: propTypes.bool,
+    description: propTypes.string
+  })
 }
 
 export default MyModal;

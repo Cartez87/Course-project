@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { Toast } from 'react-bootstrap';
 import MyModal from '../Modal';
@@ -21,28 +21,32 @@ const MovieToast = () => {
   });
 
   const [show, setShow] = useState(true);
-  const toggleShow = () => setShow(!show);
+  
+  const toggleShow = (e) => {
+    e.stopPropagation();
+    setShow(!show);
+  } 
 
-  const handleEdit = () => {
+  const handleEdit = useCallback(() => {
     setModalEdit({
       showModal: true,
       modalType: MODAL_TYPES.EDIT
     });
-  }
+  }, []);
 
-  const handleDelete = () => {
+  const handleDelete = useCallback(() => {
     setModalDelete({
       showModal: true,
       modalType: MODAL_TYPES.DELETE
     });
-  }
+  }, []);
 
   return (
     <div className="toast-wrap">
       <button className="toggle-toast-btn" onClick={toggleShow}>
         <ThreeDotsVertical />
       </button>
-      <Toast onClose={toggleShow} show={!show}>
+      <Toast onClose={toggleShow} onClick={e => e.stopPropagation()} onBlur={toggleShow} show={!show}>
         <Toast.Header />
         <Toast.Body>
           <ul className="edit-list list-unstyled mb-0 p-0">

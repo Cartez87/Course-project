@@ -4,34 +4,29 @@ import MovieToast from '../Toast';
 
 import './MovieCard.scss';
 
-const MovieCard = ({ card }) => {
-
-  const { id, cover, name, year, category } = card;
-
-    return(
-      <div id={id} className="movie-card">
-        <div className="movie-image"><img src={cover} alt={cover} /></div>
-        <div className="movie-info d-flex justify-content-between align-items-start">
-          <div className="movie-name">
-            {name}
-          </div>
-          <div className="movie-year">
-            {year}
-          </div>
-        </div>
-        <span className="movie-category">{category}</span>
-        <MovieToast />
+const MovieCard = ({ movie, chooseSelectedMovie }) => {
+  const { id, title, poster_path, release_date, genres } = movie;
+  
+  return(
+    <div id={id} className="movie-card" onClick={() => chooseSelectedMovie(movie)}>
+      <div className="movie-image"><img src={poster_path} alt={poster_path} /></div>
+      <div className="movie-info d-flex justify-content-between align-items-start">
+        <h3 className="movie-name">{title}</h3>
+        <span className="movie-year">{release_date}</span>
+      </div>
+      <span className="movie-category">{genres.map(genre => `${genre}, ` )}</span>
+      <MovieToast />
     </div>
   );
 }
 
 MovieCard.propTypes = {
-  card: propTypes.shape({
+  movie: propTypes.shape({
     id: propTypes.number,
-    name: propTypes.string,
-    year: propTypes.number,
-    category: propTypes.string,
-    cover: propTypes.string
+    title: propTypes.string,
+    release_date: propTypes.string,
+    genres: propTypes.array,
+    poster_path: propTypes.string
   })
 }
 

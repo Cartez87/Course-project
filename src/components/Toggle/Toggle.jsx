@@ -1,44 +1,35 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
 
 import './Toggle.scss';
 
-export default class Toggle extends Component {
+const Toggle = () => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectOptions: [
-                { option: "Crime" },
-                { option: "Documentary" },
-                { option: "Horror" },
-                { option: "Comedy" },
-              ],
-              selectedOptions: [
-                { option: "Crime" },
-                { option: "Comedy" }
-            ]
-        }
-        
-    }
+  const [state, setState] = useState({
+    selectOptions: [
+      { option: "Crime" },
+      { option: "Documentary" },
+      { option: "Horror" },
+      { option: "Comedy" },
+    ],
+    selectedOptions: [
+      { option: "Crime" },
+      { option: "Comedy" }
+    ]
+  })
 
-    addOption = () => {
-        this.setState(this.selectedOptions({ option: "" }));
-    }
+  const { selectOptions, selectedOptions } = state;
 
-    render() {
-
-        const { selectOptions, selectedOptions } = this.state;
-
-        return(
-            <Multiselect
-                options={selectOptions}
-                displayValue="option"
-                showCheckbox={true}
-                selectedValues={selectedOptions}
-                placeholder="Select Genre"
-                showArrow
-            />
-        )   
-    }
+  return(
+    <Multiselect
+        options={selectOptions}
+        displayValue="option"
+        showCheckbox={true}
+        selectedValues={selectedOptions}
+        placeholder="Select Genre"
+        showArrow
+    />
+  )
 }
+
+export default Toggle;
