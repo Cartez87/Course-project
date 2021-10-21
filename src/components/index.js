@@ -7,6 +7,7 @@ import MovieCard from '../components/MovieCard';
 import ResultsFilter from '../components/ResultsFilter';
 import ReleaseDateToggle from '../components/ReleaseDateToggle';
 import MovieDetails from '../components/MovieDetails';
+import FetchedMovies from '../components/FetchedMovies';
 
 export {
   Button,
@@ -16,5 +17,6 @@ export {
   ResultsFilter,
   ReleaseDateToggle,
   MovieDetails,
-  Header
+  Header,
+  FetchedMovies
 };
