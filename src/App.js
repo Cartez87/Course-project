@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { selectMovie } from './store/movieActions';
 
 import {
@@ -13,10 +13,15 @@ import './App.scss';
 import { useDispatch, useSelector } from 'react-redux';
 
 const App = () => {
-  // const [currentMovie, setCurrentMovie] = useState(null);
- 
+  
+  const dispatch = useDispatch();
+
+  const selectedMovie = useSelector((state) => {
+    return state.movies.selectedMovie;
+  });
+
   const backToSearch = () => {
-    selectedMovie(null);
+    dispatch(selectMovie(null))
   };
 
   return (

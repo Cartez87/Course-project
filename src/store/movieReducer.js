@@ -23,7 +23,7 @@ export const movieReducer = (state = initialState, {type, payload}) => {
     case SELECT_MOVIE:
       return {
         ...state,
-        selectedMovie: state.fetchedMovies.find(movie => movie.id === payload.id)
+        selectedMovie: payload
       }
     default: return state
   }

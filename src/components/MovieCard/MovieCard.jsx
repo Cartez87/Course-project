@@ -1,14 +1,18 @@
 import React from "react";
 import propTypes from 'prop-types';
 import MovieToast from '../Toast';
+import { selectMovie } from '../../store/movieActions';
 
 import './MovieCard.scss';
+import { useDispatch } from "react-redux";
 
-const MovieCard = ({ movie, chooseSelectedMovie }) => {
+const MovieCard = ({ movie }) => {
   const { id, title, poster_path, release_date, genres } = movie;
+
+  const dispatch = useDispatch();
   
   return(
-    <div id={id} className="movie-card" onClick={() => chooseSelectedMovie(movie)}>
+    <div id={id} className="movie-card" onClick={() => dispatch(selectMovie(movie))}>
       <div className="movie-image"><img src={poster_path} alt={title} /></div>
       <div className="movie-info d-flex justify-content-between align-items-start">
         <h3 className="movie-name">{title}</h3>

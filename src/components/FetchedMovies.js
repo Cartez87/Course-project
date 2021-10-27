@@ -18,6 +18,8 @@ const FetchedMovies = ({ onMovieClick })=> {
 		};
 	});
 
+  
+
 	useEffect(() => {
 		dispatch(sort && fetchMovies(filter, sort.order))
 	}, [filter, sort]);
@@ -32,7 +34,7 @@ const FetchedMovies = ({ onMovieClick })=> {
 					<Col key={movie.id} md={4}>
 						<MovieCard 
 							movie={movie}
-							chooseSelectedMovie={onMovieClick}
+							selectMovie={onMovieClick}
 						/>
 					</Col>
 				)

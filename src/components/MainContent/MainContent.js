@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ResultsFilter from '../ResultsFilter';
@@ -18,18 +18,6 @@ const MainContent = () => {
     return state.movies.fetchedMovies.data;
   });
   
-  const dispatch = useDispatch();
-
-  const selectedMovie = useSelector((state) => {
-    return state.movies.selectedMovie;
-  });
-
-  // console.log(selectedMovie)
-
-  useEffect(() => {
-    dispatch(selectMovie(selectedMovie));
-  }, [selectedMovie]);
-
   return (
     <section className="main-section">
       <Container>
@@ -46,7 +34,7 @@ const MainContent = () => {
           <MoviesCount count={countMovies?.length}/>
         </Row>
         <div className="movies-wrap">
-          <FetchedMovies selectedMovie={selectedMovie}/>
+          <FetchedMovies />
         </div>
       </Container>
     </section>
