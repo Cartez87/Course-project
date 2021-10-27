@@ -2,13 +2,19 @@ import React, { useState, useCallback } from "react";
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { Toast } from 'react-bootstrap';
 import MyModal from '../Modal';
-import Form from "../Form";
+import Form from "../customForm";
 import Button from "../Button";
 import { MODAL_TYPES } from '../../helper/constants';
 
 import './Toast.scss';
 
-const MovieToast = () => {
+const MovieToast = ({}) => {
+
+  const [show, setShow] = useState(true); 
+  const toggleShow = (e) => {
+    e.stopPropagation();
+    setShow(!show);
+  } 
 
   const [modalEdit, setModalEdit] = useState({
     showModal: false,
@@ -19,13 +25,6 @@ const MovieToast = () => {
     showModal: false,
     modalType: null
   });
-
-  const [show, setShow] = useState(true);
-  
-  const toggleShow = (e) => {
-    e.stopPropagation();
-    setShow(!show);
-  } 
 
   const handleEdit = useCallback(() => {
     setModalEdit({

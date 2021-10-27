@@ -9,7 +9,7 @@ const MovieCard = ({ movie, chooseSelectedMovie }) => {
   
   return(
     <div id={id} className="movie-card" onClick={() => chooseSelectedMovie(movie)}>
-      <div className="movie-image"><img src={poster_path} alt={poster_path} /></div>
+      <div className="movie-image"><img src={poster_path} alt={title} /></div>
       <div className="movie-info d-flex justify-content-between align-items-start">
         <h3 className="movie-name">{title}</h3>
         <span className="movie-year">{release_date}</span>

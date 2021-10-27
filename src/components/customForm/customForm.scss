@@ -1,6 +1,6 @@
 
 .form-row {
-    margin: 0 -10px 20px;
+    margin: 0 -10px 17px;
 
     .form-col {
         width: 65%;
@@ -16,6 +16,12 @@
             resize: none;
             min-height: 200px;
         }
+    }
+    .error {
+        color:#F65261;
+        font-size: 14px;
+        display: block;
+        padding-top: 3px;
     }
 }
 

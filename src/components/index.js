@@ -4,19 +4,15 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import MovieCard from '../components/MovieCard';
-import ResultsFilter from '../components/ResultsFilter';
-import ReleaseDateToggle from '../components/ReleaseDateToggle';
 import MovieDetails from '../components/MovieDetails';
-import FetchedMovies from '../components/FetchedMovies';
+import MainContent from '../components/MainContent';
 
 export {
   Button,
   ErrorBoundary,
   Footer,
   MovieCard,
-  ResultsFilter,
-  ReleaseDateToggle,
   MovieDetails,
   Header,
-  FetchedMovies
+  MainContent
 };

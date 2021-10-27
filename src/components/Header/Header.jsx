@@ -7,7 +7,7 @@ import Logo from '../Logo';
 import MyModal from '../Modal';
 import SearchForm from '../SearchForm';
 import Button from '../Button';
-import Form from '../Form';
+import Form from '../customForm';
 
 import './Header.scss';
 

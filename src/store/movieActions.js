@@ -1,5 +1,5 @@
 import { getSortedFilteredFilms } from "../services/movieService";
-import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES } from "./types";
+import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES, SELECT_MOVIE } from "./types";
 
 export const fetchMovies = (filter='', sortOrder='') => {
   return async dispatch => {
@@ -21,3 +21,10 @@ export const sortMovies = (sortOrder) => {
     payload: sortOrder
   }
 }
+
+export const selectMovie = (id) => {
+  return {
+    type: SELECT_MOVIE,
+    payload: id
+  }
+};

@@ -1,4 +1,4 @@
-import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES } from "./types"
+import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES, SELECT_MOVIE } from "./types"
 
 const initialState = {
   fetchedMovies: [],
@@ -8,7 +8,8 @@ const initialState = {
     label: '',
     order: ''
   },
-  filter: ''
+  filter: '',
+  selectedMovie: null
 }
 
 export const movieReducer = (state = initialState, {type, payload}) => {
@@ -19,7 +20,11 @@ export const movieReducer = (state = initialState, {type, payload}) => {
       return { ...state, filter: payload}
     case SORT_MOVIES:
       return {...state, sort: payload }
-
+    case SELECT_MOVIE:
+      return {
+        ...state,
+        selectedMovie: state.fetchedMovies.find(movie => movie.id === payload.id)
+      }
     default: return state
-  } 
+  }
 }
