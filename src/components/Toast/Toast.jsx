@@ -5,8 +5,10 @@ import MyModal from '../Modal';
 import Form from "../customForm";
 import Button from "../Button";
 import { MODAL_TYPES } from '../../helper/constants';
+import { deleteMovie } from "../../store/movieActions";
 
 import './Toast.scss';
+import { useDispatch, useSelector } from "react-redux";
 
 const MovieToast = ({}) => {
 
@@ -25,6 +27,11 @@ const MovieToast = ({}) => {
     showModal: false,
     modalType: null
   });
+  
+  const dispatch = useDispatch();
+  const deletedMovie = useSelector((state) => {
+    return state.movies.deletedMovie;
+  });
 
   const handleEdit = useCallback(() => {
     setModalEdit({
@@ -32,13 +39,17 @@ const MovieToast = ({}) => {
       modalType: MODAL_TYPES.EDIT
     });
   }, []);
-
+ 
   const handleDelete = useCallback(() => {
     setModalDelete({
       showModal: true,
       modalType: MODAL_TYPES.DELETE
     });
   }, []);
+  
+  const handleClick = () => {
+    dispatch(deleteMovie(deletedMovie));
+  }
 
   return (
     <div className="toast-wrap">
@@ -71,6 +82,7 @@ const MovieToast = ({}) => {
                 >
                 <Button 
                   color="PRIMARY"
+                  onClick={handleClick}
                 >Confirm</Button>
               </MyModal>
             </li>

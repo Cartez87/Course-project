@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import ResultsFilter from '../ResultsFilter';
 import ReleaseDateToggle from '../ReleaseDateToggle';

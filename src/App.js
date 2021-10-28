@@ -1,6 +1,7 @@
 import React from 'react';
-import { selectMovie } from './store/movieActions';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { selectMovie } from './store/movieActions';
 import {
   ErrorBoundary,
   Footer,
@@ -10,12 +11,10 @@ import {
 } from './components';
 
 import './App.scss';
-import { useDispatch, useSelector } from 'react-redux';
 
 const App = () => {
   
   const dispatch = useDispatch();
-
   const selectedMovie = useSelector((state) => {
     return state.movies.selectedMovie;
   });
