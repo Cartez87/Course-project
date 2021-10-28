@@ -9,8 +9,7 @@ const initialState = {
     order: ''
   },
   filter: '',
-  selectedMovie: null,
-  deletedMovie: null
+  selectedMovie: null
 }
 
 export const movieReducer = (state = initialState, {type, payload}) => {
@@ -23,8 +22,8 @@ export const movieReducer = (state = initialState, {type, payload}) => {
       return { ...state, sort: payload }
     case SELECT_MOVIE:
       return { ...state, selectedMovie: payload }
-    case DELETE_MOVIE:
-      return { ...state, deletedMovie: payload }
+    // case DELETE_MOVIE:
+    //   return { ...state, fetchedMovies: state.fetchedMovies.filter(movie => movie.id !== payload) }
     default: return state
   }
 }

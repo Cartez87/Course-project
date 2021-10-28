@@ -1,16 +1,17 @@
 import React, { useState, useCallback } from "react";
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { Toast } from 'react-bootstrap';
+import { useDispatch, useSelector } from "react-redux";
 import MyModal from '../Modal';
 import Form from "../customForm";
 import Button from "../Button";
 import { MODAL_TYPES } from '../../helper/constants';
-import { deleteMovie } from "../../store/movieActions";
+import { deleteMovie, fetchMovies } from "../../store/movieActions";
 
 import './Toast.scss';
-import { useDispatch, useSelector } from "react-redux";
 
-const MovieToast = ({}) => {
+const MovieToast = ({id}) => {
+  const dispatch = useDispatch();
 
   const [show, setShow] = useState(true); 
   const toggleShow = (e) => {
@@ -28,11 +29,6 @@ const MovieToast = ({}) => {
     modalType: null
   });
   
-  const dispatch = useDispatch();
-  const deletedMovie = useSelector((state) => {
-    return state.movies.deletedMovie;
-  });
-
   const handleEdit = useCallback(() => {
     setModalEdit({
       showModal: true,
@@ -46,9 +42,18 @@ const MovieToast = ({}) => {
       modalType: MODAL_TYPES.DELETE
     });
   }, []);
-  
+
+  const { filter, sort } = useSelector((state) => {
+    const { filter, sort } = state.movies;
+    return {
+      filter,
+      sort,
+    };
+  });
+ 
   const handleClick = () => {
-    dispatch(deleteMovie(deletedMovie));
+    dispatch(deleteMovie(id));
+    dispatch(fetchMovies(filter, sort.order));
   }
 
   return (

@@ -20,7 +20,6 @@ export const deleteMovies = async (id) => {
     `${apiUrl}/${id}`, { method: 'DELETE'});
     console.log(response);
     handleResponse(response);
-    return await response.json();
   }
 
 const handleResponse = (response) => {

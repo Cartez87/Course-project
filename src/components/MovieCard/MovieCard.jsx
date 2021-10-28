@@ -19,7 +19,7 @@ const MovieCard = ({ movie }) => {
         <span className="movie-year">{release_date}</span>
       </div>
       <span className="movie-category">{genres.map(genre => `${genre}, ` )}</span>
-      <MovieToast />
+      <MovieToast id={id}/>
     </div>
   );
 }
