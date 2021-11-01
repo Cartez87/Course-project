@@ -4,6 +4,7 @@ import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES, SELECT_MOVIE } from "./types"
 export const fetchMovies = (filter='', sortOrder='') => {
   return async dispatch => {
     const data = await getSortedFilteredFilms(filter, sortOrder);
+    console.log(data)
     dispatch({type: FETCH_MOVIES, payload: data});
   }
 }
@@ -30,7 +31,7 @@ export const selectMovie = (id) => {
 };
 
 export const deleteMovie = (id) => {
-  return async dispatch => {
+  return async () => {
     await deleteMovies(id);
   }
 };

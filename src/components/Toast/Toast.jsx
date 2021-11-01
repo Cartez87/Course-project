@@ -2,15 +2,15 @@ import React, { useState, useCallback } from "react";
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { Toast } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
+import { deleteMovie, fetchMovies } from "../../store/movieActions";
 import MyModal from '../Modal';
 import Form from "../customForm";
 import Button from "../Button";
 import { MODAL_TYPES } from '../../helper/constants';
-import { deleteMovie, fetchMovies } from "../../store/movieActions";
 
 import './Toast.scss';
 
-const MovieToast = ({id}) => {
+const MovieToast = ({ id }) => {
   const dispatch = useDispatch();
 
   const [show, setShow] = useState(true); 
@@ -51,7 +51,7 @@ const MovieToast = ({id}) => {
     };
   });
  
-  const handleClick = () => {
+  const handleDispatchClick = () => {
     dispatch(deleteMovie(id));
     dispatch(fetchMovies(filter, sort.order));
   }
@@ -87,7 +87,7 @@ const MovieToast = ({id}) => {
                 >
                 <Button 
                   color="PRIMARY"
-                  onClick={handleClick}
+                  onClick={handleDispatchClick}
                 >Confirm</Button>
               </MyModal>
             </li>

@@ -13,7 +13,8 @@ const initialValues = {
     rating: '',
     releaseDate: null,
     runtime: '',
-    overview: ''
+    overview: '',
+    genres: []
 }
 
 const onSubmit = (values, onSubmitProps) => {

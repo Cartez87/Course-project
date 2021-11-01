@@ -15,17 +15,15 @@ export const getSortedFilteredFilms = async (filter, sortOrder) => {
 
 export const deleteMovies = async (id) => {
   let apiUrl = "http://localhost:4000/movies";
-
-  const response = await fetch(
-    `${apiUrl}/${id}`, { method: 'DELETE'});
-    console.log(response);
-    handleResponse(response);
-  }
+  const response = await fetch(`${apiUrl}/${id}`, { method: 'DELETE'});
+  handleResponse(response);
+}
 
 const handleResponse = (response) => {
-  if (!response.ok) {
-    throw new Error(response.status);
-  }else {
+  console.log(response.status)
+  if(response.status >= 200 && response.status <= 299) {
     return response;
+  }else {
+    throw new Error(response.statusText);
   }
 };
