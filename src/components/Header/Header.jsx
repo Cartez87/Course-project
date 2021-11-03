@@ -7,7 +7,7 @@ import Logo from '../Logo';
 import MyModal from '../Modal';
 import SearchForm from '../SearchForm';
 import Button from '../Button';
-import Form from '../customForm';
+import CustomForm from '../CustomForm';
 
 import './Header.scss';
 
@@ -36,7 +36,7 @@ const Header = () => {
           title="ADD MOVIE"
           onHide={() => setModalShow(false)}
         >
-        <Form />
+        <CustomForm />
       </MyModal>
       </div>
       <div className="form-wrap">

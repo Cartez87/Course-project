@@ -2,9 +2,9 @@ import React, { useState, useCallback } from "react";
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { Toast } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMovie, fetchMovies } from "../../store/movieActions";
+import { deleteMovie } from "../../store/movieActions";
 import MyModal from '../Modal';
-import Form from "../customForm";
+import CustomForm from "../CustomForm";
 import Button from "../Button";
 import { MODAL_TYPES } from '../../helper/constants';
 
@@ -34,14 +34,14 @@ const MovieToast = ({ id }) => {
       showModal: true,
       modalType: MODAL_TYPES.EDIT
     });
-  }, []);
+  });
  
   const handleDelete = useCallback(() => {
     setModalDelete({
       showModal: true,
       modalType: MODAL_TYPES.DELETE
     });
-  }, []);
+  });
 
   const { filter, sort } = useSelector((state) => {
     const { filter, sort } = state.movies;
@@ -51,17 +51,16 @@ const MovieToast = ({ id }) => {
     };
   });
  
-  const handleDispatchClick = () => {
-    dispatch(deleteMovie(id));
-    dispatch(fetchMovies(filter, sort.order));
+  const handleDispatchClick = async () => {
+    dispatch(deleteMovie(id, filter, sort.order));
   }
-
+  
   return (
     <div className="toast-wrap">
       <button className="toggle-toast-btn" onClick={toggleShow}>
         <ThreeDotsVertical />
       </button>
-      <Toast onClose={toggleShow} onClick={e => e.stopPropagation()} onBlur={toggleShow} show={!show}>
+      <Toast onClose={toggleShow} onBlur={toggleShow} onClick={e => e.stopPropagation()} show={!show}>
         <Toast.Header />
         <Toast.Body>
           <ul className="edit-list list-unstyled mb-0 p-0">
@@ -73,7 +72,7 @@ const MovieToast = ({ id }) => {
                 size="lg"
                 onHide={() => setModalEdit(false)}
               >
-                <Form />
+                <CustomForm />
               </MyModal>
             </li>
             <li>

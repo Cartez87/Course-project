@@ -21,9 +21,9 @@ export const deleteMovies = async (id) => {
 
 const handleResponse = (response) => {
   console.log(response.status)
-  if(response.status >= 200 && response.status <= 299) {
-    return response;
-  }else {
+  if(!response.ok) {
     throw new Error(response.statusText);
+  }else {
+    return response;
   }
 };

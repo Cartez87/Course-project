@@ -1,3 +1,3 @@
-import customForm from './customForm';
+import CustomForm from './CustomForm';
 
-export default customForm;
+export default CustomForm;

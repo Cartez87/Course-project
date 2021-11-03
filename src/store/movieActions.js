@@ -7,21 +7,21 @@ export const fetchMovies = (filter='', sortOrder='') => {
     console.log(data)
     dispatch({type: FETCH_MOVIES, payload: data});
   }
-}
+};
 
 export const filterMovies = (filter) => {
   return {
     type: FILTER_MOVIES, 
     payload: filter
   }
-}
+};
 
 export const sortMovies = (sortOrder) => {
   return {
     type: SORT_MOVIES, 
     payload: sortOrder
   }
-}
+};
 
 export const selectMovie = (id) => {
   return {
@@ -30,8 +30,9 @@ export const selectMovie = (id) => {
   }
 };
 
-export const deleteMovie = (id) => {
-  return async () => {
-    await deleteMovies(id);
+export const deleteMovie = (id, filter='', sortOrder='') => {
+  return (dispatch) => {
+    deleteMovies(id)
+    .then(() => dispatch(fetchMovies(filter, sortOrder)));
   }
 };
