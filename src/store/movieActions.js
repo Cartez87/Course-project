@@ -1,10 +1,10 @@
-import { getSortedFilteredFilms, deleteMovies } from "../services/movieService";
-import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES, SELECT_MOVIE } from "./types";
+import { getSortedFilteredFilms, deleteMovies, getSearchMovies } from "../services/movieService";
+import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES, SELECT_MOVIE, SEARCH_MOVIES } from "./types";
 
 export const fetchMovies = (filter='', sortOrder='') => {
   return async dispatch => {
     const data = await getSortedFilteredFilms(filter, sortOrder);
-    console.log(data)
+    console.log(data, 'aaaaa')
     dispatch({type: FETCH_MOVIES, payload: data});
   }
 };
@@ -34,5 +34,13 @@ export const deleteMovie = (id, filter='', sortOrder='') => {
   return (dispatch) => {
     deleteMovies(id)
     .then(() => dispatch(fetchMovies(filter, sortOrder)));
+  }
+};
+
+export const searchMovie = (search) => {
+  return async (dispatch) => {
+    const searchData = await getSearchMovies(search);
+    console.log(searchData)
+    dispatch({type: FETCH_MOVIES, payload: searchData});
   }
 };

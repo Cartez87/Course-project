@@ -14,7 +14,7 @@ const FetchedMovies = ()=> {
     return {
       movies: fetchedMovies.data,
       filter,
-      sort,
+      sort
     };
   });
 

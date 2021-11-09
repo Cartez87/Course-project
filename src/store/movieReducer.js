@@ -1,4 +1,4 @@
-import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES, SELECT_MOVIE } from "./types"
+import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES, SELECT_MOVIE, SEARCH_MOVIES } from "./types"
 
 const initialState = {
   fetchedMovies: [],

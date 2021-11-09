@@ -13,7 +13,7 @@ import {
 import './App.scss';
 
 const App = () => {
-  
+ 
   const dispatch = useDispatch();
   const selectedMovie = useSelector((state) => {
     return state.movies.selectedMovie;

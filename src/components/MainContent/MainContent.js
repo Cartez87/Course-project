@@ -10,6 +10,9 @@ import MoviesCount from '../MoviesCount';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import {
+  Link
+} from "react-router-dom";
 
 
 const MainContent = () => {
@@ -21,6 +24,7 @@ const MainContent = () => {
   return (
     <section className="main-section">
       <Container>
+       <Link to="/main-content">aasdasd</Link>
         <Row className="filters-panel justify-content-between align-items-start">
           <Col>
             <ResultsFilter />
