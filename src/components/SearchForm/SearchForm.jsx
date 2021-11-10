@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import Button from '../Button';
 
+import {useNavigate} from 'react-router-dom';
 import './SearchForm.scss';
 import { useDispatch } from 'react-redux';
 
 const SearchForm = ({ searchMovie }) => {
   const [ query, setQuery ] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const handleChange = (e) => {
     e.preventDefault();
@@ -17,8 +19,9 @@ const SearchForm = ({ searchMovie }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(searchMovie(query));
+    navigate(`/search/${query}`);
   }
- 
+
   return (
     <form onSubmit={handleSubmit} className="search-form d-flex">
       <input 

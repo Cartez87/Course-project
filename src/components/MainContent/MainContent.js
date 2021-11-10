@@ -24,7 +24,6 @@ const MainContent = () => {
   return (
     <section className="main-section">
       <Container>
-       <Link to="/main-content">aasdasd</Link>
         <Row className="filters-panel justify-content-between align-items-start">
           <Col>
             <ResultsFilter />

@@ -2,14 +2,20 @@
 .page-wrapper {
     height: 100vh;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     
     h1 {
         color: #F65261;
         text-align: center;
+        width: 100%;
         >span {
             font-size: 100px;
         }
+    }
+    a{
+        color: #F65261;
+        text-decoration: none;
     }
 }

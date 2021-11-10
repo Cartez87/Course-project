@@ -12,16 +12,15 @@ import {
   Route,
   Navigate
 } from "react-router-dom";
-import MovieDetails from './components/MovieDetails';
 
 const movieApp = (
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/search" element={<App />} />
+        <Route path="/search" element={<App />} >
+          <Route path=":searchQuery" element={<App />} />
+        </Route>
         <Route path="/" element={<Navigate replace to="/search" />} />
-        
-        {/* <Route path="movie-details/*" element={<MovieDetails />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
