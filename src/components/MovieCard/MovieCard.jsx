@@ -1,7 +1,6 @@
 import React from "react";
 import propTypes from 'prop-types';
 import MovieToast from '../Toast';
-// import { useNavigate } from "react-router-dom";
 import { selectMovie } from '../../store/movieActions';
 
 import './MovieCard.scss';
@@ -9,12 +8,10 @@ import { useDispatch } from "react-redux";
 
 const MovieCard = ({ movie }) => {
   const { id, title, poster_path, release_date, genres } = movie;
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(selectMovie(movie));
-    // navigate(`/movie-details/${id}`);
   }
   
   return(

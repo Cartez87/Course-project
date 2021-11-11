@@ -5,7 +5,6 @@ import { Search } from 'react-bootstrap-icons';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { Link } from "react-router-dom";
 
 import Logo from '../Logo';
 
@@ -14,14 +13,14 @@ import './MovieDetails.scss';
 const MovieDetails = ({ details, backToSearch }) => {
 
     const { 
-        id, 
-        poster_path, 
-        title, 
-        release_date, 
-        genres, 
-        vote_average, 
-        runtime, 
-        overview 
+      id,
+      poster_path, 
+      title, 
+      release_date, 
+      genres, 
+      vote_average, 
+      runtime, 
+      overview 
     } = details;
 
     return (
