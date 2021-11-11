@@ -1,59 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-
+import { selectMovie } from './store/movieActions';
 import {
   ErrorBoundary,
   Footer,
-  ResultsFilter,
-  ReleaseDateToggle,
   MovieDetails,
   Header,
-  FetchedMovies
+  MainContent
 } from './components';
 
 import './App.scss';
 
 const App = () => {
-  const [currentMovie, setCurrentMovie] = useState(null);
-   
+ 
+  const dispatch = useDispatch();
+  const selectedMovie = useSelector((state) => {
+    return state.movies.selectedMovie;
+  });
+
   const backToSearch = () => {
-    setCurrentMovie(null);
+    dispatch(selectMovie(null))
   };
 
   return (
     <ErrorBoundary>
       <div className="App">
-        { currentMovie ? 
+        { selectedMovie ? 
         <MovieDetails
-          key={currentMovie.id}
-          details={currentMovie}
+          key={selectedMovie.id}
+          details={selectedMovie}
           backToSearch={backToSearch}
         />
          : <Header />
         }
-        <section className="main-section">
-          <Container>
-            
-            <Row className="filters-panel justify-content-between align-items-start">
-              <Col>
-                <ResultsFilter />
-              </Col>
-              <Col className="d-flex align-items-center justify-content-end">
-                <span className="sort-by">Sort by</span>
-                <ReleaseDateToggle />
-              </Col>
-            </Row>
-            <Row>
-              <h3><b> </b> movies found</h3>
-            </Row>
-            <div className="movies-wrap">
-              <FetchedMovies onMovieClick={setCurrentMovie}/>
-            </div>
-          </Container>
-        </section>
+        <MainContent />
         <Footer />
       </div>
     </ErrorBoundary>

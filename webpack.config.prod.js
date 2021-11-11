@@ -39,7 +39,8 @@ module.exports = {
     compress: true,
     port: 6000,
     hot: true,
-    open: true
+    open: true,
+    historyApiFallback: true
   },
   optimization: {
     splitChunks: {

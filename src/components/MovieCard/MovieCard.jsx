@@ -1,21 +1,31 @@
 import React from "react";
 import propTypes from 'prop-types';
 import MovieToast from '../Toast';
+// import { useNavigate } from "react-router-dom";
+import { selectMovie } from '../../store/movieActions';
 
 import './MovieCard.scss';
+import { useDispatch } from "react-redux";
 
-const MovieCard = ({ movie, chooseSelectedMovie }) => {
+const MovieCard = ({ movie }) => {
   const { id, title, poster_path, release_date, genres } = movie;
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(selectMovie(movie));
+    // navigate(`/movie-details/${id}`);
+  }
   
   return(
-    <div id={id} className="movie-card" onClick={() => chooseSelectedMovie(movie)}>
-      <div className="movie-image"><img src={poster_path} alt={poster_path} /></div>
+    <div id={id} className="movie-card" onClick={handleClick}>
+      <div className="movie-image"><img src={poster_path} alt={title} /></div>
       <div className="movie-info d-flex justify-content-between align-items-start">
         <h3 className="movie-name">{title}</h3>
         <span className="movie-year">{release_date}</span>
       </div>
       <span className="movie-category">{genres.map(genre => `${genre}, ` )}</span>
-      <MovieToast />
+      <MovieToast id={id}/>
     </div>
   );
 }

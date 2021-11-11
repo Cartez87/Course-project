@@ -7,16 +7,13 @@ import Logo from '../Logo';
 import MyModal from '../Modal';
 import SearchForm from '../SearchForm';
 import Button from '../Button';
-import Form from '../Form';
+import CustomForm from '../CustomForm';
 
+import { searchMovie } from '../../store/movieActions';
 import './Header.scss';
 
 const Header = () => {
   const [modalShow, setModalShow] = useState(false);
-
-  const handleSearch = (search) => {
-    console.log(search);
-  }
 
   return(
     <section className="header-section">
@@ -36,14 +33,12 @@ const Header = () => {
           title="ADD MOVIE"
           onHide={() => setModalShow(false)}
         >
-        <Form />
+        <CustomForm />
       </MyModal>
       </div>
       <div className="form-wrap">
         <h1>FIND YOUR MOViE</h1>
-        <SearchForm
-          onSearch={handleSearch}
-        />
+        <SearchForm searchMovie={searchMovie} />
       </div>
       </Container>
     </section>

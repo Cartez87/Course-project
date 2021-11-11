@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import './Logo.scss';
 
@@ -6,7 +7,7 @@ const Logo = () => {
 
   return (
     <div className="logo">
-      <a href="/#"><strong>netflix</strong>roulette</a>
+      <Link to="/"><strong>netflix</strong>roulette</Link>
     </div>
   )
 }

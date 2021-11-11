@@ -2,31 +2,37 @@ import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import Button from '../Button';
 
+import {useNavigate} from 'react-router-dom';
 import './SearchForm.scss';
+import { useDispatch } from 'react-redux';
 
-const SearchForm = ({ onSearch }) => {
-
+const SearchForm = ({ searchMovie }) => {
   const [ query, setQuery ] = useState('');
-
-  const onChange = (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  const handleChange = (e) => {
+    e.preventDefault();
     setQuery(e.target.value);
-  }
+  };
 
-  const handleSearch = () => {
-    onSearch(query);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(searchMovie(query));
+    navigate(`/search/${query}`);
   }
 
   return (
-    <form className="search-form d-flex">
+    <form onSubmit={handleSubmit} className="search-form d-flex">
       <input 
-        type="text" 
-        onChange={onChange} 
+        onChange={handleChange} 
+        value={query}
+        type="search" 
         className="form-control" 
         placeholder="What do you want to watch?"
       />
       <Button
-        onClick={handleSearch} 
-        type="button"
+        type="submit"
       >    
         Search
       </Button>
@@ -35,7 +41,7 @@ const SearchForm = ({ onSearch }) => {
 }
 
 SearchForm.propTypes = {
-  onSearch: propTypes.func
+  searchMovies: propTypes.func
 }
 
 export default SearchForm;

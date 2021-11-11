@@ -1,14 +1,23 @@
 import React, { useState, useCallback } from "react";
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { Toast } from 'react-bootstrap';
+import { useDispatch, useSelector } from "react-redux";
+import { deleteMovie } from "../../store/movieActions";
 import MyModal from '../Modal';
-import Form from "../Form";
+import CustomForm from "../CustomForm";
 import Button from "../Button";
 import { MODAL_TYPES } from '../../helper/constants';
 
 import './Toast.scss';
 
-const MovieToast = () => {
+const MovieToast = ({ id }) => {
+  const dispatch = useDispatch();
+
+  const [show, setShow] = useState(true); 
+  const toggleShow = (e) => {
+    e.stopPropagation();
+    setShow(!show);
+  } 
 
   const [modalEdit, setModalEdit] = useState({
     showModal: false,
@@ -19,28 +28,33 @@ const MovieToast = () => {
     showModal: false,
     modalType: null
   });
-
-  const [show, setShow] = useState(true);
   
-  const toggleShow = (e) => {
-    e.stopPropagation();
-    setShow(!show);
-  } 
-
   const handleEdit = useCallback(() => {
     setModalEdit({
       showModal: true,
       modalType: MODAL_TYPES.EDIT
     });
-  }, []);
-
+  });
+ 
   const handleDelete = useCallback(() => {
     setModalDelete({
       showModal: true,
       modalType: MODAL_TYPES.DELETE
     });
-  }, []);
+  });
 
+  const { filter, sort } = useSelector((state) => {
+    const { filter, sort } = state.movies;
+    return {
+      filter,
+      sort,
+    };
+  });
+ 
+  const handleDispatchClick = async () => {
+    dispatch(deleteMovie(id, filter, sort.order));
+  }
+  
   return (
     <div className="toast-wrap">
       <button className="toggle-toast-btn" onClick={toggleShow}>
@@ -58,7 +72,7 @@ const MovieToast = () => {
                 size="lg"
                 onHide={() => setModalEdit(false)}
               >
-                <Form />
+                <CustomForm />
               </MyModal>
             </li>
             <li>
@@ -72,6 +86,7 @@ const MovieToast = () => {
                 >
                 <Button 
                   color="PRIMARY"
+                  onClick={handleDispatchClick}
                 >Confirm</Button>
               </MyModal>
             </li>
