@@ -5,7 +5,7 @@ import Button from "../Button";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Errortext from './ErrorText';
-import './customForm.scss';
+import './CustomForm.scss';
 
 const initialValues = {
   title: '',
@@ -28,7 +28,6 @@ const validationSchema = Yup.object({
   poster_path: Yup.string().required('Required field'),
   overview: Yup.string().required('Required field'),
   runtime: Yup.string().required('Required field'),
-  // releaseDate: Yup.date().required('Required field').nullable()
 })
 
 const CustomForm = () => {
@@ -50,7 +49,7 @@ const CustomForm = () => {
                 name="title" 
                 placeholder="Title"
               />
-              <ErrorMessage name="title" component={Errortext}/>
+              <ErrorMessage data-testid="error" name="title" component={Errortext}/>
             </div>
             <div className="form-col">
               <label htmlFor="releaseDate">RELEASE DATE</label>
@@ -120,6 +119,7 @@ const CustomForm = () => {
             <Button 
               color="PRIMARY"
               type="submit"
+              data-testid="custom-element"
             >Submit</Button>
           </div>
         </Form>

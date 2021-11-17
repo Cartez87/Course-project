@@ -1,8 +1,8 @@
 import React from "react";
 import { Nav } from 'react-bootstrap';
 import { useSelector, useDispatch } from "react-redux";
-import './ResultsFilter.scss';
 import { filterMovies } from "../../store/movieActions";
+import './ResultsFilter.scss';
 
 const menuItems = [
   'All',
@@ -25,14 +25,13 @@ const ResultsFilter = () => {
   }
   
   return (
-
-      <Nav className="category-nav" variant="pills" defaultActiveKey="All-0">
-        {menuItems.map((menuItem, index) => 
-          <Nav.Item key={`${menuItem}-${index}`}>
-            <Nav.Link eventKey={`${menuItem}-${index}`} onClick={onClick}>{menuItem}</Nav.Link>
-          </Nav.Item>
-        )}
-      </Nav>
+    <Nav className="category-nav" variant="pills" defaultActiveKey="All-0">
+      {menuItems.map((menuItem, index) => 
+        <Nav.Item key={`${menuItem}-${index}`}>
+          <Nav.Link eventKey={`${menuItem}-${index}`} onClick={onClick}>{menuItem}</Nav.Link>
+        </Nav.Item>
+      )}
+    </Nav>
   );
 }
 

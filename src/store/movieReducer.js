@@ -1,6 +1,6 @@
-import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES, SELECT_MOVIE, SEARCH_MOVIES } from "./types"
+import { FETCH_MOVIES, FILTER_MOVIES, SORT_MOVIES, SELECT_MOVIE } from "./actionTypes"
 
-const initialState = {
+export const initialState = {
   fetchedMovies: [],
   sortBy: "release_date",
   sort: {
@@ -12,7 +12,7 @@ const initialState = {
   selectedMovie: null
 }
 
-export const movieReducer = (state = initialState, {type, payload}) => {
+export default function movieReducer (state = initialState, {type, payload}) {
   switch (type) {
     case FETCH_MOVIES:
       return { ...state, fetchedMovies: payload }
