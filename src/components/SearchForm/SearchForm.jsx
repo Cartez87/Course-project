@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 const SearchForm = ({ searchMovie }) => {
   const [ query, setQuery ] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
   const handleChange = (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ const SearchForm = ({ searchMovie }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(searchMovie(query));
-    navigate(`/search/${query}`);
+    // navigate(`/search/${query}`);
   }
 
   return (
@@ -28,7 +28,8 @@ const SearchForm = ({ searchMovie }) => {
         onChange={handleChange} 
         value={query}
         type="search" 
-        className="form-control" 
+        className="form-control"
+        aria-label="input"
         placeholder="What do you want to watch?"
       />
       <Button
@@ -41,7 +42,7 @@ const SearchForm = ({ searchMovie }) => {
 }
 
 SearchForm.propTypes = {
-  searchMovies: propTypes.func
+  searchMovie: propTypes.func
 }
 
 export default SearchForm;

@@ -10,11 +10,14 @@ import {
   MainContent
 } from './components';
 
+import { useLocation } from "react-router-dom";
+import { getSearchMovies, getSortedFilteredFilms } from './services/movieService';
 import './App.scss';
 
 const App = () => {
- 
+  const url = useLocation();
   const dispatch = useDispatch();
+  
   const selectedMovie = useSelector((state) => {
     return state.movies.selectedMovie;
   });
@@ -22,6 +25,12 @@ const App = () => {
   const backToSearch = () => {
     dispatch(selectMovie(null))
   };
+
+  if(url.pathname === "/search") {
+    getSearchMovies('');
+  }else {
+    getSortedFilteredFilms();
+  }
 
   return (
     <ErrorBoundary>
