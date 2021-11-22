@@ -5,7 +5,7 @@ import { createMemoryHistory } from "history";
 import NotFoundPage from "./NotFoundPage";
 import { BrowserRouter } from "react-router-dom";
 
-it("should navigate to error page", () => {
+it("should navigate to error page is route wrong", () => {
     const history = createMemoryHistory();
     history.push("wrong-name");
     const { container } = render(

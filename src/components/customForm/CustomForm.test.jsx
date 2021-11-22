@@ -23,7 +23,5 @@ test('rendering and submitting a basic Formik form', async () => {
     fireEvent.click(submit)
   });
 
-  expect(results.innerHTML).toBe(
-    '{"name":"mockname"}'
-  )
+  expect(name.value).toBe("mockname");
 });
