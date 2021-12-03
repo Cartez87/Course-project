@@ -8,6 +8,8 @@
     "dev": "cross-env NODE_ENV=development webpack serve --mode development",
     "build": "cross-env NODE_ENV=development webpack --mode development",
     "prod": "cross-env NODE_ENV=production webpack --mode production",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
     "ssr": "cross-env nodemon server/index.js"
   },
   "keywords": [
@@ -34,6 +36,12 @@
     "@babel/plugin-transform-runtime": "^7.16.0",
     "@babel/preset-env": "^7.15.6",
     "@babel/preset-react": "^7.14.5",
+    "@storybook/addon-actions": "^6.4.4",
+    "@storybook/addon-essentials": "^6.4.4",
+    "@storybook/addon-links": "^6.4.4",
+    "@storybook/builder-webpack5": "^6.4.4",
+    "@storybook/manager-webpack5": "^6.4.4",
+    "@storybook/react": "^6.4.4",
     "@babel/register": "^7.16.0",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
@@ -67,7 +75,7 @@
     "redux": "^4.1.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
-    "sass-loader": "^12.1.0",
+    "sass-loader": "^11.1.0",
     "style-loader": "^3.2.1",
     "terser-webpack-plugin": "^5.2.4",
     "url-loader": "^4.1.1",
@@ -77,6 +85,7 @@
     "webpack-dev-server": "^4.2.1"
   },
   "dependencies": {
+    "@storybook/preset-scss": "^1.0.3",
     "classnames": "^2.3.1",
     "express": "^4.17.1",
     "formik": "^2.2.9",
