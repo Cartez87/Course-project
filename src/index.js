@@ -27,6 +27,6 @@ const movieApp = (
   </Provider>
 )
 
-ReactDOM.render(movieApp,
+ReactDOM.hydrate(movieApp,
   document.getElementById('root')
 );
