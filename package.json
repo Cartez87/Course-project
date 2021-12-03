@@ -10,6 +10,7 @@
     "prod": "cross-env NODE_ENV=production webpack --mode production",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
+    "ssr": "cross-env nodemon server/index.js"
   },
   "keywords": [
     "js",
@@ -41,6 +42,7 @@
     "@storybook/builder-webpack5": "^6.4.4",
     "@storybook/manager-webpack5": "^6.4.4",
     "@storybook/react": "^6.4.4",
+    "@babel/register": "^7.16.0",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -57,10 +59,12 @@
     "history": "^5.1.0",
     "html-webpack-plugin": "^5.3.2",
     "identity-obj-proxy": "^3.0.0",
+    "ignore-styles": "^5.0.1",
     "jest": "^27.3.1",
     "mini-css-extract-plugin": "^2.3.0",
     "multiselect-react-dropdown": "^2.0.6",
     "node-sass": "^6.0.1",
+    "nodemon": "^2.0.15",
     "react-bootstrap": "^2.0.0-rc.0",
     "react-bootstrap-icons": "^1.5.0",
     "react-datepicker": "^4.2.1",
@@ -83,6 +87,7 @@
   "dependencies": {
     "@storybook/preset-scss": "^1.0.3",
     "classnames": "^2.3.1",
+    "express": "^4.17.1",
     "formik": "^2.2.9",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
