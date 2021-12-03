@@ -3,6 +3,7 @@
   max-width: 800px;
   width: 100%;
   position: relative;
+  display: flex;
   z-index: 2;
 }
 
@@ -16,6 +17,7 @@
   color: white;
   font-size: 20px;
   border: 0;
+  border: 1px solid rgb(15, 15, 15);
 }
 
 .search-form .form-control:focus {

@@ -23,7 +23,7 @@ const SearchForm = ({ searchMovie }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="search-form d-flex">
+    <form onSubmit={handleSubmit} className="search-form">
       <input 
         onChange={handleChange} 
         value={query}

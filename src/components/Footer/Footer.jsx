@@ -6,7 +6,7 @@ import './Footer.scss';
 const Footer = () => {
 
   return (
-    <div className="footer d-flex justify-content-center">
+    <div className="footer">
       <Logo />
     </div>
   );

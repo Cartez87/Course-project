@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 import './Button.scss';
 
-const Button = ({ children, color, ...attrs }) => {
+const Button = ({ disabled, onClick, text, color, ...attrs }) => {
 
   const BUTTON_COLOR = {
     PRIMARY: 'btn-primary',
@@ -17,15 +17,19 @@ const Button = ({ children, color, ...attrs }) => {
     <button 
       className={"btn " + colorClassName}
       {...attrs}
+      onClick={onClick}
+      disabled={disabled}
     >
-      {children}
+      {text}
     </button>
   )
 }
 
 Button.propTypes = {
-  children: propTypes.string,
-  color: propTypes.string
+  text: propTypes.string,
+  color: propTypes.string,
+  disabled: propTypes.bool,
+  onClick: propTypes.func
 }
 
 export default Button;

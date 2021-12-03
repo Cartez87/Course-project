@@ -3,7 +3,7 @@ import { Multiselect } from "multiselect-react-dropdown";
 
 import './Toggle.scss';
 
-const Toggle = () => {
+const Toggle = ({placeholder, showCheckbox}) => {
 
   const [state, setState] = useState({
     selectOptions: [
@@ -24,9 +24,9 @@ const Toggle = () => {
     <Multiselect
         options={selectOptions}
         displayValue="option"
-        showCheckbox={true}
+        showCheckbox={showCheckbox}
         selectedValues={selectedOptions}
-        placeholder="Select Genre"
+        placeholder={placeholder}
         showArrow
     />
   )

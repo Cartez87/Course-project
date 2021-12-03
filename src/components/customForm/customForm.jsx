@@ -85,7 +85,9 @@ const CustomForm = () => {
           <div className="form-row d-flex">
             <div className="form-col">
               <label>genre</label>
-              <Toggle />
+              <Toggle 
+                showCheckbox="true"
+              />
             </div>
             <div className="form-col">
               <label htmlFor="runtime">RUNTIME</label>

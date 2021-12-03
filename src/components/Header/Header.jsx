@@ -20,7 +20,10 @@ const Header = () => {
       <HeaderImage />
       <Container>
       <div className="top-panel d-flex justify-content-between align-items-center">
-        <Logo />
+        <Logo 
+          text="netflix"
+          boldText="roulette"
+        />
         <Button 
           color="SECONDARY"
           onClick={() => setModalShow(true)}

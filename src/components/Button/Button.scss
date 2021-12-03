@@ -7,6 +7,7 @@
   padding: 0.7em;
   font-size: 20px;
   font-weight: 500;
+  cursor: pointer;
 
   &:focus {
     box-shadow: none;
@@ -45,5 +46,10 @@
       background: #F65261;
       color: white;
     }
+  }
+  &:disabled,
+  &[disabled]{
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
